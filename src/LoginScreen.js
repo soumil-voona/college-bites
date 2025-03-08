@@ -18,28 +18,25 @@ function LoginScreen() {
   };
 
   return (
-    <div>
-        <form style={{ backgroundColor: "#F6F6F6" , borderRadius: "10px" }}>
+    <div className = 'bg'>
+        <form className = 'login'>
+            <h2 className = 'loginTxt'>Login</h2>
+            <p className = 'txt'>Connect back to your account</p>
             <div>
-                <input name="email" type='email' placeholder='Enter Email Address' />
+                <input className = 'inputField email' name="email" type='email' placeholder='email address' />
             </div>
 
             <div>
-                <input name="password" type='password' placeholder='Enter Password'/>
+                <input className = 'inputField password' name="password" type='password' placeholder='password'/>
+            </div>
+
+            <p className = 'forgotPwd txt'>forgot password?</p>
+            <div>
+                <button className = 'loginBtn' type="submit">log in</button>
             </div>
 
             <div>
-                <button type="submit">Login</button>
-            </div>
-
-            <div>
-                <button type='button'>Forgot Password?</button>
-            </div>
-
-            <div className='line'></div>
-
-            <div>
-                <button type='button'>Create New Account</button>
+                <p className = 'signup txt'>or sign up </p>
             </div>
         </form>
     </div>
