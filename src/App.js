@@ -1,6 +1,5 @@
-import logo from './logo.svg';
 import LoginScreen from './LoginScreen';
-import './App.css';
+import './index.css';
 
 function App() {
   return (
