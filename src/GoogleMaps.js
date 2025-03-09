@@ -35,7 +35,7 @@ const GoogleMaps = ({ lat, lon, zoom }) => {
     }
   }, [lat, lon]); // Re-run the effect when lat or lon changes
 
-  return <div id="map" className='GoogleMaps' style={{ width: "100%", height: "500px" }}></div>;
+  return <div id="map" className='GoogleMaps' style={{ width: "40vw", height: "40vh", borderRadius: "20px", left:"28vw" }}></div>;
 };
 
 export default GoogleMaps;

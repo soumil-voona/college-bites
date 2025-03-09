@@ -3,9 +3,8 @@
     font-size: 5rem;
     position: absolute;
     top: 15vh;
-    left: 10vw;
+    left: 23vw;
     font-weight: 500;
-    margin-left: 18vh ;
 }
 .searchBar{
     position: absolute;
@@ -35,4 +34,9 @@
     top: 55vh;
     position: absolute;
     z-index: 999;
+    width: 500px;
+}
+
+.map {
+    width: 500px;
 }

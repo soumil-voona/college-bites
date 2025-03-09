@@ -29,7 +29,7 @@ const Map = () => {
   return (
     <>
       <MenuBar />
-      <h2 className='map-header'>Find Drivers Near You</h2>
+      <div className='map-header'>Find Drivers Near You</div>
       <div>
         <input
           className='searchBar'
@@ -56,7 +56,7 @@ const Map = () => {
           </svg>
         </button>
       </div>
-      <GoogleMaps lat={location.lat} lon={location.lon} zoom = {13}/>
+      <GoogleMaps className='map' lat={location.lat} lon={location.lon} zoom = {13}/>
     </>
   );
 };
