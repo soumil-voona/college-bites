@@ -99,39 +99,6 @@ const SignUp = () => {
         </p>
         <p style={{ fontFamily: "Poppins", color: "#510104" }}>{message}</p>
 
-        {/* PyScript Integration */}
-        <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-        <py-script>
-import pandas as pd
-from js import document
-
-initial_csv_data = [
-    ['John Doe', 'user1', 'pass1'],
-    ['Jane Smith', 'user2', 'pass2'],
-    ['Mark Lee', 'user3', 'pass3']
-]
-
-csv_data = pd.DataFrame(initial_csv_data, columns=['name', 'username', 'password'])
-
-def handle_add_data(event):
-    name = document.getElementById("name").value
-    username = document.getElementById("username").value
-    password = document.getElementById("password").value
-    message = document.getElementById("message")
-
-    if name and username and password:
-        new_data = pd.DataFrame([[name, username, password]], columns=['name', 'username', 'password'])
-        global csv_data
-        csv_data = pd.concat([csv_data, new_data], ignore_index=True)
-        csv_data = csv_data.drop_duplicates(subset='username')
-        message.innerHTML = 'Signed Up!'
-        print(csv_data)
-    else:
-        message.innerHTML = 'Please enter valid inputs.'
-
-sign_up_btn = document.getElementById('signUpBtn')
-sign_up_btn.addEventListener('click', handle_add_data)
-        </py-script>
       </div>
     </div>
   );
