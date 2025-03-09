@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './login.css'
+import './login.css';  
 
 function LoginScreen() {
   const [username, setUsername] = useState('');
@@ -24,14 +24,14 @@ function LoginScreen() {
             <h2 className = 'loginTxt'>Login</h2>
             <p className = 'txt'>Connect back to your account</p>
             <div>
-                <input className = 'inputField email' name="email" type='email' placeholder='email address' />
+                <input className = 'inputField email' name="email" type='email' placeholder='phone number' />
             </div>
 
             <div>
                 <input className = 'inputField password' name="password" type='password' placeholder='password'/>
             </div>
 
-            <p className = 'forgotPwd txt'>forgot password?</p>
+            <p className = 'forgotPw txt'>forgot password?</p>
             <div>
                 <button className = 'loginBtn' type="submit">log in</button>
             </div>

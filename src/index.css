@@ -1,8 +1,52 @@
-.opening{
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+.opening {
     width: 100vw;
     margin-left: -8px;
     margin-top: -8px;
     height: 100vh;
     position: absolute;
-    background-color: white;
+    background-color:  #ffffff !important;
+}
+.header{
+    font-family: Poppins;
+    font-size: 60px;
+    position: absolute;
+    top: 15vh;
+    left: 10vw;
+    font-weight: 500;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    margin-top: 4vh;
+  }
+  
+  .logo-content {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    font-family: "Saira Stencil One";
+    font-size: 30px;
+
+  }
+@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
+  .logo-content svg {
+    margin-right: 10px; /* Adjust the spacing as needed */
+}
+img{
+    z-index: 5;
+    top: 45vh;
+    position: absolute;
+    width: 35vh;
+}
+.utd{
+    left: 8.5vw;
+}
+.atm{
+    left: 38.5vw;
+}
+.unt{
+    left: 70vw;
 }

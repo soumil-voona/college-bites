@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import './login.css';  
 
-function SignupScreen() {
+function LoginScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -18,32 +19,29 @@ function SignupScreen() {
   };
 
   return (
-    <div>
-        <form style={{ backgroundColor: "#F6F6F6" , borderRadius: "10px" }}>
+    <div className = 'bg'>
+        <form className = 'login'>
+            <h2 className = 'loginTxt'>Sign Up</h2>
+            <p className = 'txt'>Create a new account</p>
             <div>
-                <input name="email" type='email' placeholder='Enter Email Address' />
+                <input className = 'inputField email' name="email" type='email' placeholder='phone number' />
             </div>
 
             <div>
-                <input name="password" type='password' placeholder='Enter Password'/>
+                <input className = 'inputField password' name="password" type='password' placeholder='password'/>
             </div>
 
             <div>
-                <input name="confirm-password" type='password' placeholder='Confirm Password'/>
+                <input className = 'inputField name' name="name" type='name' placeholder='name'/>
             </div>
 
             <div>
-                <button type="submit">Signup</button>
+                <button className = 'loginBtn signUp' type="submit">sign up</button>
             </div>
 
-            <div className='line'></div>
-
-            <div>
-                <button type='button'>Already have an account? Sign in</button>
-            </div>
         </form>
     </div>
   );
 }
 
-export default SignupScreen;
+export default LoginScreen;

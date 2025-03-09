@@ -1,0 +1,34 @@
+.info-opening{
+    width: 100vw;
+    margin-left: -8px;
+    margin-top: -8px;
+    height: 100vh;
+    position: absolute;
+    background-color: #E0BABB;
+}
+.header{
+    color: #000;
+}
+.btn{
+    z-index: 10;
+    position: absolute;
+    top: 65vh;
+    width: 30vw;
+    height: 20vh;
+    background-color: #510104;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+}
+span.txt{
+    font-size: 35px;
+    margin: auto;
+}
+.customer{
+    left: 10vw;
+}
+.driver {
+    left: 50vw;
+}

@@ -35,7 +35,7 @@
   font-family: Poppins;
   font-size: 15px;
 }
-.forgotPwd{
+.forgotPw{
   position: absolute;
   top: 37vh;
   margin-left: 4vw;
@@ -81,4 +81,10 @@
   width: 100vw;
   height: 100%;
   background-color: #E0BABB;
+}
+.name{
+  top: 37vh;
+}
+.signUp{
+  top:47vh;
 }

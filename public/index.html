@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dynamic React Loading</title>
   </head>
-  
+
   <body style = 'background-color: #e0babb'>
     <!-- Root element for React -->
     <div id="root"></div>
@@ -23,10 +23,14 @@
       const path = window.location.pathname;
       if (path === "/login") {
         // Load the login React component
-        loadReactComponent("LoginScreen.js");
-      } else {
-        // Load the main app React component
-        loadReactComponent("App.js");
+        loadReactComponent("/LoginScreen.js");
+      } else if (path === "/signup") {
+        loadReactComponent("/SignupScreen.js");
+      } else if (path === "/info"){
+        loadReactComponent("Information.js")
+      }
+      else {
+        loadReactComponent("/App.js");
       }
     </script>
   </body>
