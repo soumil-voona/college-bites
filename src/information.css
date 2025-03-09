@@ -20,6 +20,8 @@
     display: flex;
     align-items: center;
     border-radius: 30px;
+    width: 20vw;
+    height: 5vw;
 }
 span.txt{
     font-size: 35px;
@@ -30,7 +32,7 @@ span.txt{
     left: 10vw;
 }
 .driver {
-    left: 27.5vw;
+    left: 35vw;
 }
 .second{
     width: 100vw;
