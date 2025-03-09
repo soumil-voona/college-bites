@@ -6,19 +6,18 @@ import axios from 'axios';
 
 const Map = () => {
   const [address, setAddress] = useState('');
+  const [location, setLocation] = useState({ lat: null, lon: null });
 
   const convert = async () => {
     const geocodeUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
-    
+
     try {
       const response = await axios.get(geocodeUrl);
       const results = response.data;
       if (results.length > 0) {
         const { lat, lon } = results[0];
-        window.latitude = lat;
-        window.longitude = lon;
-        console.error('Latitude:', lat, 'Longitude:', lon);
-        // You can now use the lat and lon values as needed
+        setLocation({ lat, lon });
+        console.log('Latitude:', lat, 'Longitude:', lon);
       } else {
         console.error('No results found');
       }
@@ -52,7 +51,7 @@ const Map = () => {
           </svg>
         </button>
       </div>
-      <GoogleMaps />
+      <GoogleMaps lat={location.lat} lon={location.lon} />
     </>
   );
 };
