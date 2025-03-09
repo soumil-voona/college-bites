@@ -40,19 +40,20 @@ const App = () => {
 
   return (
     <div className='bg'>
-      <h2 style={styles.header}>Sign Up</h2>
+      <h2 className = 'loginTxt'>Sign Up</h2>
 
-      <div style={styles.formGroup}>
-        <label style={styles.label}>name:</label>
+      <div >
         <input
-          type="text"
+          type="email"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          name="email"
+          placeholder='email: '
           style={styles.input}
         />
       </div>
 
-      <div style={styles.formGroup}>
+      <div >
         <label style={styles.label}>email</label>
         <input
           type="text"
@@ -62,7 +63,7 @@ const App = () => {
         />
       </div>
 
-      <div style={styles.formGroup}>
+      <div >
         <label style={styles.label}>password:</label>
         <input
           type="password"
