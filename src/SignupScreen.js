@@ -1,99 +1,142 @@
 import React, { useState } from 'react';
-import './login.css';
+import './login.css'
 
 const App = () => {
+  // Initial data, simulating the contents of "db.csv"
+  const initialCsvData = [
+    { name: 'John Doe', username: 'user1', password: 'pass1' },
+    { name: 'Jane Smith', username: 'user2', password: 'pass2' },
+    { name: 'Mark Lee', username: 'user3', password: 'pass3' },
+  ];
+
+  const [csvData, setCsvData] = useState(initialCsvData);
   const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [monkey, setMonkey] = useState('');
+  const [monkeyP, setMonkeyP] = useState('');
   const [message, setMessage] = useState('');
 
-  // Send data to the backend
-  const handleAddData = async () => {
-    if (name && username && password) {
-      const newData = { name, username, password };
+  // Add new data to the CSV in memory and remove duplicates
+  const handleAddData = () => {
+    if (name && monkey && monkeyP) {
+      const newData = [...csvData, { name, username: monkey, password: monkeyP }];
+      console.log(newData);
 
-      try {
-        const response = await fetch('http://localhost:5000/add-data', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(newData),
-        });
+      // Remove duplicates based on 'username'
+      const uniqueData = newData.filter((value, index, self) =>
+        index === self.findIndex((t) => (
+          t.username === value.username
+        ))
+      );
 
-        if (response.ok) {
-          setMessage('Data added successfully!');
-          setName('');
-          setUsername('');
-          setPassword('');
-        } else {
-          setMessage('Failed to add data.');
-        }
-      } catch (error) {
-        setMessage('Error: ' + error.message);
-      }
+      setCsvData(uniqueData);
+      setMessage('Signed Up!');
+      setName('');
+      setMonkey('');
+      setMonkeyP('');
     } else {
       setMessage('Please enter valid inputs.');
     }
   };
-
-  // Download the updated db.csv file
-  const handleDownloadCSV = () => {
-    window.open('http://localhost:5000/download-csv', '_blank');
-  };
-
+  
   return (
-    <div className="bg">
-      <div className="login">
-        <h2 className="loginTxt">Sign Up</h2>
-        <p className="connectTxt">Connect with us!</p>
+    <div className='bg'>
+      <h2 className = 'loginTxt'>Sign Up</h2>
 
-        <div>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="inputField"
-            placeholder="Name"
-          />
-        </div>
-
-        <div>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="inputField password"
-            placeholder="Email"
-          />
-        </div>
-
-        <div>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="inputField password"
-            placeholder="Password"
-          />
-        </div>
-
-        <button onClick={handleAddData} className="loginBtn signUp">
-          Sign Up
-        </button>
-
-        <button onClick={handleDownloadCSV} className="loginBtn" style={{ marginTop: '20px' }}>
-          Download Updated db.csv
-        </button>
-
-        <p className="signup" onClick={() => setMessage('Switch to Login')}>
-          Already have an account? Login
-        </p>
-
-        <p className="txt">{message}</p>
+      <div >
+        <input
+          type="email"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          name="email"
+          placeholder='email: '
+          style={styles.input}
+        />
       </div>
+
+      <div >
+        <label style={styles.label}>email</label>
+        <input
+          type="text"
+          value={monkey}
+          onChange={(e) => setMonkey(e.target.value)}
+          style={styles.input}
+        />
+      </div>
+
+      <div >
+        <label style={styles.label}>password:</label>
+        <input
+          type="password"
+          value={monkeyP}
+          onChange={(e) => setMonkeyP(e.target.value)}
+          style={styles.input}
+        />
+      </div>
+
+      <button onClick={handleAddData} style={styles.button}>Sign Up</button>
+
+      <p style={styles.message}>{message}</p>
     </div>
   );
+};
+
+// Styles for the UI
+const styles = {
+  container: {
+    maxWidth: '600px',
+    margin: '50px auto',
+    padding: '20px',
+    border: '1px solid #ccc',
+    borderRadius: '8px',
+    backgroundColor: '#f9f9f9',
+  },
+  header: {
+    textAlign: 'center',
+    color: '#333',
+  },
+  formGroup: {
+    marginBottom: '15px',
+  },
+  label: {
+    display: 'block',
+    marginBottom: '5px',
+    fontWeight: 'bold',
+  },
+  input: {
+    width: '100%',
+    padding: '8px',
+    borderRadius: '4px',
+    border: '1px solid #ccc',
+  },
+  button: {
+    width: '100%',
+    padding: '10px',
+    backgroundColor: '#4CAF50',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    fontWeight: 'bold',
+  },
+  message: {
+    textAlign: 'center',
+    fontSize: '16px',
+    color: '#333',
+    marginTop: '10px',
+  },
+  table: {
+    width: '100%',
+    borderCollapse: 'collapse',
+    marginTop: '20px',
+  },
+  tableHeader: {
+    backgroundColor: '#f2f2f2',
+  },
+  tableData: {
+    padding: '8px',
+    textAlign: 'left',
+    border: '1px solid #ccc',
+  },
 };
 
 export default App;
