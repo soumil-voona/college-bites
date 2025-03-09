@@ -1,0 +1,33 @@
+.map-header{
+    font-family: Poppins;
+    font-size: 5rem;
+    position: absolute;
+    top: 15vh;
+    left: 10vw;
+    font-weight: 500;
+    margin-left: 18vh ;
+}
+.searchBar{
+    position: absolute;
+    top: 40vh;
+    margin: auto;
+    width: 45vw;
+    left: 22.5vw;
+    height: 7.5vh;
+    border-radius: 50px;
+    border-style: solid;
+    padding-left: 5vw;
+    font-size: 2rem;
+    font-family: Poppins;
+}
+.searchBar::placeholder{
+    color: #510104;
+}
+.mapIcon{
+    position: absolute;
+    top: 41vh;
+    left: 24vw;
+    fill: #510104;
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+}
