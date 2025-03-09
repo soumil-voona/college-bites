@@ -1,82 +1,100 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import Papa from "papaparse";
 import './login.css'; // Ensure this import is included to load the CSS
 
-function App() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
-  const [csvData, setCsvData] = useState([]);
+const SignUp = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [users, setUsers] = useState([]);
 
-  // Fetch and parse the CSV data from the db.csv file
   useEffect(() => {
-    fetch('/db.csv')
+    fetch("db.csv") // Assuming the db.csv file is in the public folder
       .then((response) => response.text())
-      .then((data) => {
-        const parsedData = parseCSV(data);
-        setCsvData(parsedData);
-      })
-      .catch((error) => {
-        console.error('Error fetching CSV:', error);
+      .then((text) => {
+        Papa.parse(text, {
+          header: true,
+          complete: (results) => {
+            setUsers(results.data);
+          },
+        });
       });
   }, []);
 
-  // Simple CSV parser function
-  const parseCSV = (csvText) => {
-    const rows = csvText.split('\n');
-    const data = rows.map((row) => {
-      const columns = row.split(',');
-      return {
-        username: columns[0].trim(),
-        password: columns[1].trim(),
-      };
-    });
-    return data;
-  };
+  const handleSignUp = () => {
+    if (name && email && password) {
+      const newUser = { name, email, password };
 
-  // Handle login attempt
-  const handleLogin = () => {
-    const user = csvData.find(
-      (userData) => userData.username === username && userData.password === password
-    );
-    if (user) {
-      setMessage('Success, iniyann!');
+      // Append new user data to the current users list
+      const updatedUsers = [...users, newUser].filter(
+        (user, index, self) =>
+          index === self.findIndex((u) => u.email === user.email)
+      );
+
+      // Update the state
+      setUsers(updatedUsers);
+      setMessage("Signed Up!");
+
+      // Clear input fields
+      setName("");
+      setEmail("");
+      setPassword("");
+
+      // Convert updated users list to CSV and simulate updating the database
+      const csv = Papa.unparse(updatedUsers);
+      
+      // Here you would normally send the updated CSV to a server, but this is a mock implementation
+      // Since we don't want to allow downloading or viewing the CSV, we simply log it
+      console.log(csv);
     } else {
-      setMessage('Invalid credentials, please try again.');
+      setMessage("Please enter valid inputs.");
     }
   };
 
   return (
     <div className="bg">
       <div className="login">
-        <h1 className="loginTxt">Login</h1>
+        <h2 className="loginTxt">Sign Up</h2>
+        <p className="connectTxt">Connect with us!</p>
 
         <input
           type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          className="inputField name"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="email"
           className="inputField"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
+          className="inputField password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="inputField password"
         />
-        <div className="forgotPw">Forgot Password?</div>
-        <button className="loginBtn" onClick={handleLogin}>Login</button>
 
-        {message && (
-          <p style={{ textAlign: 'center', color: message.includes('Success') ? 'green' : 'red' }}>
-            {message}
-          </p>
-        )}
+        <button className="loginBtn" onClick={handleSignUp}>
+          Sign Up
+        </button>
 
-        <div className="signup">Don't have an account? Sign up here</div>
+        <p
+          className="signup"
+          onClick={() => alert("Switch to Login")}
+        >
+          Already have an account? Login
+        </p>
+
+        <p className="txt">{message}</p>
       </div>
     </div>
   );
-}
+};
 
-export default App;
+export default SignUp;
