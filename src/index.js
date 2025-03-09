@@ -11,10 +11,10 @@ root.render(
   <React.StrictMode>
     <Router>
       <Routes>
-        <Route path="/" element={<MainWebpage />} /> {/* Default route */}
+        <Route path="/" element={<Information />} /> {/* Default route */}
         <Route path="/login" element={<LoginScreen />} /> {/* Login route */}
         <Route path="/signup" element={<SignupScreen />} />
-        <Route path="/info" element = {<Information />} />
+        <Route path="/select" element = {<MainWebpage />} />
         <Route path="/driverPortal" element = {<DriverPortal/>} />
       </Routes>
     </Router>

@@ -10,7 +10,7 @@ const Information = () => {
         
         <MenuBar />
         <h2 className="header">Share homemade love <br /> <span style={{ color: '#510104' }}>To your college doves</span></h2>
-        <div className = 'btn customer'><span className = 'txt'>I am a customer</span></div>
+        <a href = '/login'><div className = 'btn customer'><span className = 'txt'>I am a customer</span></div> </a>
         <a href='/driverPortal' ><div className = 'btn driver'><span className = 'txt'>I am a driver</span></div></a>
     </div>
     <div className="second">
