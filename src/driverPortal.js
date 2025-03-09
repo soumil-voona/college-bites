@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import MenuBar from './MenuBar';
 import ListingDriver from './listingDriver';
 import './driverPortal.css';
+import config from './CONSTANTS.js';
 
 const DriverPortal = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [listings, setListings] = useState([]);
-  const [newListing, setNewListing] = useState({ deliveryDate: '', destination: '' });
+  const [newListing, setNewListing] = useState({ name: '', deliveryDate: '', destination: '' });
 
   const handleNewListing = () => {
     setShowPopup(true);
@@ -18,21 +19,26 @@ const DriverPortal = () => {
   };
 
   const handleNewListingSubmit = () => {
-    if (newListing.deliveryDate && newListing.destination) {
+    if (newListing.name && newListing.deliveryDate && newListing.destination) {
       const newEntry = {
+        name: newListing.name,
+        address: newListing.address,
+        number: newListing.phoneNumber,
         id: listings.length + 1,
         deliveryDate: newListing.deliveryDate,
         destination: newListing.destination,
       };
-      setListings((prevListings) => [...prevListings, newEntry]); // ✅ Update state
+      config.driverInfo.push(newEntry);
+      console.error(config.driverInfo);
+      setListings((prevListings) => [...prevListings, newEntry]);
       setShowPopup(false);
-      setNewListing({ deliveryDate: '', destination: '' });
+      setNewListing({ name: '', deliveryDate: '', destination: '' });
     }
   };
 
   const closePopup = () => {
     setShowPopup(false);
-    setNewListing({ deliveryDate: '', destination: '' });
+    setNewListing({ name: '', deliveryDate: '', destination: '' });
   };
 
   return (
@@ -48,6 +54,7 @@ const DriverPortal = () => {
       ) : (
         <>
           <div className='push'>
+            <span className='name list-header'>Name</span>
             <span className='date list-header'>Delivery Date</span>
             <span className='location list-header'>Location</span>
           </div>
@@ -72,6 +79,39 @@ const DriverPortal = () => {
       {showPopup && (
         <div className="popup-overlay">
           <div className="popup-content">
+            <div>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                className='username-input input-overlay'
+                value={newListing.name}
+                onChange={handleInputChange}
+                placeholder="Enter your name"
+              />
+            </div>
+            <div>
+              <input
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                className='username-input input-overlay'
+                value={newListing.phoneNumber}
+                onChange={handleInputChange}
+                placeholder="Enter phone number"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                id="address"
+                name="address"
+                className='username-input input-overlay'
+                value={newListing.address}
+                onChange={handleInputChange}
+                placeholder="Enter your address"
+              />
+            </div>
             <div>
               <input
                 type="date"

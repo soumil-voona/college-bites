@@ -22,10 +22,18 @@
     font-size: 2rem;
     font-family: Poppins;
 }
-
+.name{
+    position: absolute;
+    left: 23.5vw;
+    top: 0vh;
+}
 .location {
     position: relative;
     margin-left: 25.5vw;
+    left: 19vw;
+}
+.date{
+    left: 37vw;
 }
 
 .new-listing-button {
