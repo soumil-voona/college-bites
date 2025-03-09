@@ -9,6 +9,7 @@
   background-color: #F5DEDF;
   margin-top: 17.5vh;
   position: absolute;
+  border-radius: 10px;
 }
 
 .inputField{
@@ -25,6 +26,7 @@
   font-family: Poppins;
   font-size: 15px;
   padding-left: 10px;
+  border-radius: 10px;
 }
 .password{
   margin-top: 8vh;
@@ -58,22 +60,25 @@
 
 .loginBtn{
   position: absolute;
-  width: 35vw;
   top: 41vh;
-  height: 7.5vh;
-  margin-left: 11.5vh;
+  margin-left: 4vw;
   background-color: #510104;
-  border-radius: 50px;
+  border-radius: 20px;
   color: white;
   font-family: Poppins;
   font-size: 25px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border-style: none;
 }
 
 .signup{
-  margin-left: 37.5vh;
+  margin-left: 37vw;
   position: absolute;
-  top: 50vh;
+  top: 37vh;
+  font-size: 10px;
   color: rgba(81, 1, 4, 0.63);
   cursor: pointer;
 }

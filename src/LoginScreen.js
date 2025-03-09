@@ -24,21 +24,22 @@ function LoginScreen() {
             <h2 className = 'loginTxt'>Login</h2>
             <p className = 'txt'>Connect back to your account</p>
             <div>
-                <input className = 'inputField email' name="email" type='email' placeholder='phone number' />
+                <input className = 'inputField email' name="phone" type='email' placeholder='Phone Number' />
             </div>
 
             <div>
-                <input className = 'inputField password' name="password" type='password' placeholder='password'/>
-            </div>
-
-            <p className = 'forgotPw txt'>forgot password?</p>
-            <div>
-                <button className = 'loginBtn' type="submit">log in</button>
+                <input className = 'inputField password' name="password" type='password' placeholder='Password'/>
             </div>
 
             <div>
-                <p className = 'signup txt'>or sign up </p>
+              <p className = 'forgotPw txt'>Forgot Password?</p>
+              <p className = 'signup txt'>New? Sign up here!</p>
             </div>
+
+            <div>
+                <button className = 'loginBtn' type="submit">Login</button>
+            </div>
+
         </form>
     </div>
   );
