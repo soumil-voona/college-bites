@@ -130,3 +130,12 @@ h3{
     font-size: 23px;
     color: black;
 }
+svg{
+    fill: #a2641c;
+}
+.logoLink{
+    color: black;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}

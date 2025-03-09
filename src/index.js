@@ -5,7 +5,7 @@ import LoginScreen from "./LoginScreen";
 import SignupScreen from "./SignupScreen";
 import Information from "./Information"
 import MainWebpage from "./MainWebpage"
-import driverPortal from "./driverPortal";
+import DriverPortal from "./driverPortal";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -15,7 +15,7 @@ root.render(
         <Route path="/login" element={<LoginScreen />} /> {/* Login route */}
         <Route path="/signup" element={<SignupScreen />} />
         <Route path="/info" element = {<Information />} />
-        <Route path="/driverPortal" element = {<driverPortal/>} />
+        <Route path="/driverPortal" element = {<DriverPortal/>} />
       </Routes>
     </Router>
   </React.StrictMode>
