@@ -14,7 +14,7 @@
 
 .inputField{
   margin-left: 4vw;
-  margin-top: 4vh;
+  margin-top: 2vh;
   color: #444;
   width: 40vw;
   background-color: #F5DEDF;
@@ -87,6 +87,7 @@
   color: rgba(81, 1, 4, 0.63);
   cursor: pointer;
   font-family: Poppins;
+  top: 1vh;
 }
 .bg{
   width: 100vw;
@@ -98,4 +99,12 @@
 }
 .signUp{
   top:47vh;
+}
+.txt{
+  text-align: center;
+  font-family: Poppins;
+  color:#510104;
+}
+.loginBtn.signUp{
+  top: 14vh
 }

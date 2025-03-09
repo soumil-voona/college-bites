@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dynamic React Loading</title>
+    <title>College Bites</title>
   </head>
 
   <body style = 'background-color: #e0babb'>
@@ -25,13 +25,15 @@
         loadReactComponent("/LoginScreen.js");
       } else if (path === "/signup") {
         loadReactComponent("/SignupScreen.js");
-      } else if (path === "/info"){
+      } else if (path === "/select"){
         loadReactComponent("Information.js");
-      } else if (path == "/driverPortal") {
+      } else if (path === "/driverPortal") {
         loadReactComponent("driverPortal.js");
+      } else if (path === "/find"){
+        loadReactComponent("Map.js")
       }
       else {
-        loadReactComponent("/MainScreen.js");
+        loadReactComponent("/Information.js");
       }
     </script>
   </body>
