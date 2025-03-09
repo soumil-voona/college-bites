@@ -14,6 +14,7 @@
 
 .inputField{
   margin-left: 4vw;
+  margin-top: 4vh;
   color: #444;
   width: 40vw;
   background-color: #F5DEDF;
@@ -29,7 +30,8 @@
   border-radius: 10px;
 }
 .password{
-  margin-top: 8vh;
+  position: relative;
+  top: 8vh;
 }
 
 .inputField::placeholder {
@@ -38,35 +40,37 @@
   font-size: 15px;
 }
 .forgotPw{
-  position: absolute;
-  top: 37vh;
-  margin-left: 4vw;
+  position: relative;
+  text-align: right;
+  margin-right: 5vw;
+  margin-top: 5vw;
   color: rgba(81, 1, 4, 0.63);
-  font-size: 10px;
+  font-size: 1rem;
   cursor: pointer;
+  font-family: Poppins;
 }
 .loginTxt{
   text-align: center;
   font-family: Poppins;
-  font-size: 60px;
+  font-size: 4.5rem;
   margin-top: 2vh;
   margin-bottom: 0vh;
 }
-.txt{
+.connectTxt{
   margin-top: 0%;
   text-align: center;
   font-family: Poppins;
 }
 
 .loginBtn{
-  position: absolute;
-  top: 41vh;
+  position: relative;
   margin-left: 4vw;
   background-color: #510104;
   border-radius: 20px;
   color: white;
   font-family: Poppins;
-  font-size: 25px;
+  font-size: 2rem;
+  bottom: 2rem;
   padding-left: 15px;
   padding-right: 15px;
   padding-top: 5px;
@@ -75,12 +79,14 @@
 }
 
 .signup{
-  margin-left: 37vw;
-  position: absolute;
-  top: 37vh;
-  font-size: 10px;
+  position: relative;
+  text-align: left;
+  left: 4vw;
+  bottom: 2.5vw;
+  font-size: 1rem;
   color: rgba(81, 1, 4, 0.63);
   cursor: pointer;
+  font-family: Poppins;
 }
 .bg{
   width: 100vw;

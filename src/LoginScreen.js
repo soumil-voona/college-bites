@@ -22,7 +22,7 @@ function LoginScreen() {
     <div className = 'bg'>
         <form className = 'login'>
             <h2 className = 'loginTxt'>Login</h2>
-            <p className = 'txt'>Connect back to your account</p>
+            <p className = 'connectTxt'>Connect back to your account</p>
             <div>
                 <input className = 'inputField email' name="phone" type='email' placeholder='Phone Number' />
             </div>
@@ -32,8 +32,8 @@ function LoginScreen() {
             </div>
 
             <div>
-              <p className = 'forgotPw txt'>Forgot Password?</p>
-              <p className = 'signup txt'>New? Sign up here!</p>
+              <p className = 'forgotPw'>Forgot Password?</p>
+              <a href='/signup'><p className = 'signup'>New? Sign up here!</p></a>
             </div>
 
             <div>
