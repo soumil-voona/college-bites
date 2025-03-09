@@ -2,7 +2,7 @@
     width: 100vw;
     margin-left: -8px;
     margin-top: -8px;
-    height: 100vh;
+    height: 95vh;
     position: absolute;
     background-color: #E0BABB;
 }
@@ -31,4 +31,49 @@ span.txt{
 }
 .driver {
     left: 50vw;
+}
+.second{
+    width: 100vw;
+    margin-left: -8px;
+    margin-top: -8px;
+    top: 95vh;
+    height: 90vh;
+    position: absolute;
+    background-color: #510104;
+}
+.menu{
+    color: black;
+    font-family: Poppins;
+    font-size:1.5rem;
+    margin-left: 5vw;
+    margin-top: .5vh;
+}
+.about{
+    color: white;
+    margin-top: -5vh;
+    margin-bottom: -5vh;
+}
+.help{
+    color: white;
+    font-family: Poppins;
+    width: 80vw;
+    height: 30vh;
+    background-color: #E0BABB;
+    border-radius: 50px;
+    padding: 3vw;
+    margin: auto;
+    margin-top: 30vh;
+    font-size: 23px;
+    color: black;
+}
+h3{
+    color: black;
+    font-family: Poppins;
+    margin-top: 0;
+    font-size: 2rem;
+    margin-bottom: 1vh;
+}
+.third{
+    position: absolute;
+    top: 180vh;
 }
