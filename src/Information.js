@@ -12,7 +12,7 @@ const Information = () => {
           College Bites
         </span>
       </div>
-      <h2 className="header">Share homemade food <br /> <span style={{ color: '#510104' }}>With your college students</span></h2>
+      <h2 className="header">Share homemade love <br /> <span style={{ color: '#510104' }}>With your college doves</span></h2>
       <div className = 'btn customer'><span className = 'txt'>I am a customer</span></div>
       <div className = 'btn driver'><span className = 'txt'>I am a driver</span></div>
     </>
