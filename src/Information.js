@@ -59,6 +59,27 @@ const Information = () => {
             </p>
         </div>
     </div>
+    <div className="fourth">
+        <h2 className = 'header about'>Box <span style = {{color: '#E0BABB'}}>Information</span></h2>
+        <div className = 'measurements'>
+            <h3>
+                Food Measurements
+            </h3>
+            <p>
+                <img src = './images/boxSize.png' alt='dimensions' style={{width: '30vw', marginTop: '-8vh'}}></img>
+            </p>
+        </div>
+        <div className = 'foodDelivered'>
+            <h3>
+                Food Capacity:
+            </h3>
+            <p>
+                coupe: 10-15 boxes <br /><br />
+                sedan: 20-24 boxes <br /><br />
+                SUVs and minivans: 75-100 boxes
+            </p>
+        </div>
+    </div>
     </>
   )
 }
