@@ -99,3 +99,11 @@
 .signUp{
   top:47vh;
 }
+.txt{
+  text-align: center;
+  font-family: Poppins;
+  color:#510104;
+}
+.loginBtn.signUp{
+  top: 18vh
+}

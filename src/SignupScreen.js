@@ -1,19 +1,41 @@
 import React, { useState } from 'react';
-import './login.css';  
+import './login.css'
 
-function LoginScreen() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+const App = () => {
+  // Initial data, simulating the contents of "db.csv"
+  const initialCsvData = [
+    { name: 'John Doe', username: 'user1', password: 'pass1' },
+    { name: 'Jane Smith', username: 'user2', password: 'pass2' },
+    { name: 'Mark Lee', username: 'user3', password: 'pass3' },
+  ];
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('Username:', username, 'Password:', password);
+  const [csvData, setCsvData] = useState(initialCsvData);
+  const [name, setName] = useState('');
+  const [monkey, setMonkey] = useState('');
+  const [monkeyP, setMonkeyP] = useState('');
+  const [message, setMessage] = useState('');
+
+  // Add new data to the CSV in memory and remove duplicates
+  const handleAddData = () => {
+    if (name && monkey && monkeyP) {
+      const newData = [...csvData, { name, username: monkey, password: monkeyP }];
+      console.log(newData);
+
+      // Remove duplicates based on 'username'
+      const uniqueData = newData.filter((value, index, self) =>
+        index === self.findIndex((t) => (
+          t.username === value.username
+        ))
+      );
+
+      setCsvData(uniqueData);
+      setMessage('Signed Up!');
+      setName('');
+      setMonkey('');
+      setMonkeyP('');
+    } else {
+      setMessage('Please enter valid inputs.');
+    }
   };
   const initialCsvData = [
       { name: 'John Doe', username: 'user1', password: 'pass1' },
@@ -50,29 +72,103 @@ function LoginScreen() {
   };
   
   return (
-    <div className = 'bg'>
-        <form className = 'login'>
-            <h2 className = 'loginTxt'>Sign Up</h2>
-            <p className = 'txt'>Create a new account</p>
-            <div>
-                <input className = 'inputField email' name="email" type='email' placeholder='email' />
-            </div>
+    <div className='bg'>
+      <h2 style={styles.header}>Sign Up</h2>
 
-            <div>
-                <input className = 'inputField password' name="password" type='password' placeholder='password'/>
-            </div>
+      <div style={styles.formGroup}>
+        <label style={styles.label}>name:</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          style={styles.input}
+        />
+      </div>
 
-            <div>
-                <input className = 'inputField name' name="name" type='name' placeholder='name'/>
-            </div>
+      <div style={styles.formGroup}>
+        <label style={styles.label}>email</label>
+        <input
+          type="text"
+          value={monkey}
+          onChange={(e) => setMonkey(e.target.value)}
+          style={styles.input}
+        />
+      </div>
 
-            <div>
-                <button className = 'loginBtn signUp' type="submit">sign up</button>
-            </div>
+      <div style={styles.formGroup}>
+        <label style={styles.label}>password:</label>
+        <input
+          type="password"
+          value={monkeyP}
+          onChange={(e) => setMonkeyP(e.target.value)}
+          style={styles.input}
+        />
+      </div>
 
-        </form>
+      <button onClick={handleAddData} style={styles.button}>Sign Up</button>
+
+      <p style={styles.message}>{message}</p>
     </div>
   );
-}
+};
 
-export default LoginScreen;
+// Styles for the UI
+const styles = {
+  container: {
+    maxWidth: '600px',
+    margin: '50px auto',
+    padding: '20px',
+    border: '1px solid #ccc',
+    borderRadius: '8px',
+    backgroundColor: '#f9f9f9',
+  },
+  header: {
+    textAlign: 'center',
+    color: '#333',
+  },
+  formGroup: {
+    marginBottom: '15px',
+  },
+  label: {
+    display: 'block',
+    marginBottom: '5px',
+    fontWeight: 'bold',
+  },
+  input: {
+    width: '100%',
+    padding: '8px',
+    borderRadius: '4px',
+    border: '1px solid #ccc',
+  },
+  button: {
+    width: '100%',
+    padding: '10px',
+    backgroundColor: '#4CAF50',
+    color: 'white',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    fontWeight: 'bold',
+  },
+  message: {
+    textAlign: 'center',
+    fontSize: '16px',
+    color: '#333',
+    marginTop: '10px',
+  },
+  table: {
+    width: '100%',
+    borderCollapse: 'collapse',
+    marginTop: '20px',
+  },
+  tableHeader: {
+    backgroundColor: '#f2f2f2',
+  },
+  tableData: {
+    padding: '8px',
+    textAlign: 'left',
+    border: '1px solid #ccc',
+  },
+};
+
+export default App;
