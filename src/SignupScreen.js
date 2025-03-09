@@ -58,7 +58,7 @@ const App = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             className="inputField password"
-            placeholder="Username"
+            placeholder="Email"
           />
         </div>
 
