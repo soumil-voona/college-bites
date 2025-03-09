@@ -1,17 +1,15 @@
-.push {
+.box {
     position: relative;
-    top: 15vh;
-}
-
-.line {
-    position: relative;
-    height: 1vh;
-    width: 52vw;
-    background-color: #000000;
+    padding: 20px;
+    width: 50vw;
+    background-color: #510104;
     font-family: Poppins;
     color: white;
     align-content: center;
     border-radius: 10px;
     margin-bottom: 10px;
 }
-
+.center {
+    margin: auto;
+    margin-bottom: 10px;
+}
