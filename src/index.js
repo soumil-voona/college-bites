@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginScreen from "./LoginScreen";
-import SignupScreen from "./SignupScreen";
+import SignupScreen from "./SignupScreen-1";
 import Information from "./Information"
 import MainWebpage from "./MainWebpage"
 import DriverPortal from "./driverPortal";
