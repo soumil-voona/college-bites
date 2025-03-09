@@ -37,6 +37,11 @@ const Map = () => {
           placeholder='Enter Your Address'
           value={address}
           onChange={(e) => setAddress(e.target.value)}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              convert();
+            }
+          }}
         />
         <button type="button" onClick={convert}>
           <svg

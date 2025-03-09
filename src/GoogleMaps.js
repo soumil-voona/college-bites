@@ -7,7 +7,7 @@ const GoogleMaps = ({ lat, lon }) => {
     const mapContainer = document.getElementById("map");
     if (mapContainer && !mapContainer._leaflet_id) {
       // Initialize the map
-      const map = L.map(mapContainer).setView([lat || 32.8136, lon || -96.9547], 10); // Default to a location if lat/lon are not provided
+      const map = L.map(mapContainer).setView([lat || 32.8136, lon || -96.9547], 12); // Default to a location if lat/lon are not provided
 
       // Load OpenStreetMap tiles (Free, No API Key Required)
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -16,7 +16,14 @@ const GoogleMaps = ({ lat, lon }) => {
 
       // Add a marker (pin)
       if (lat && lon) {
-        L.marker([lat, lon])
+        const customIcon = L.icon({
+          iconUrl: './images/home-pin.png', // Path to your custom icon
+          iconSize: [38, 38], // Size of the icon
+          iconAnchor: [22, 38], // Point of the icon which will correspond to marker's location
+          popupAnchor: [-3, -76] // Point from which the popup should open relative to the iconAnchor
+        });
+
+        L.marker([lat, lon], { icon: customIcon })
           .addTo(map)
           .bindPopup("Selected Location") // Popup text
           .openPopup();
