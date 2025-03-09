@@ -56,7 +56,7 @@ const Map = () => {
           </svg>
         </button>
       </div>
-      <GoogleMaps lat={location.lat} lon={location.lon} />
+      <GoogleMaps lat={location.lat} lon={location.lon} zoom = {13}/>
     </>
   );
 };

@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import L from "leaflet"; // Leaflet.js for maps
 import "leaflet/dist/leaflet.css"; // Leaflet CSS for styling
 
-const GoogleMaps = ({ lat, lon }) => {
+const GoogleMaps = ({ lat, lon, zoom }) => {
   useEffect(() => {
     const mapContainer = document.getElementById("map");
     if (mapContainer && !mapContainer._leaflet_id) {
       // Initialize the map
-      const map = L.map(mapContainer).setView([lat || 32.8136, lon || -96.9547], 12); // Default to a location if lat/lon are not provided
+      const map = L.map(mapContainer).setView([lat || 32.8136, lon || -96.9547], lat && lon ? 13 : 5); // Default to a location if lat/lon are not provided
 
       // Load OpenStreetMap tiles (Free, No API Key Required)
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -25,7 +25,7 @@ const GoogleMaps = ({ lat, lon }) => {
 
         L.marker([lat, lon], { icon: customIcon })
           .addTo(map)
-          .bindPopup("Selected Location") // Popup text
+          .bindPopup("Your Address") // Popup text
           .openPopup();
       }
 
