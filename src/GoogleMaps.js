@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect , useState} from "react";
 import L from "leaflet"; // Leaflet.js for maps
 import "leaflet/dist/leaflet.css"; // Leaflet CSS for styling
 import config from "./CONSTANTS.js";
 import axios from "axios";
 
 const GoogleMaps = ({ lat, lon }) => {
+  const [showPopup, setShowPopup] = useState(false);
   useEffect(() => {
     const mapContainer = document.getElementById("map");
 
@@ -17,6 +18,10 @@ const GoogleMaps = ({ lat, lon }) => {
       iconAnchor: [22, 38],
       popupAnchor: [-3, -76],
     });
+
+    const closePopup = () => {
+      setShowPopup(false);
+    };
 
     const workerIcon = L.icon({
       iconUrl: process.env.PUBLIC_URL + "/images/worker-pin.png", // Correct path to the image
@@ -73,9 +78,13 @@ const GoogleMaps = ({ lat, lon }) => {
             L.marker(coords, { icon: workerIcon }) // Make sure valid coordinates are passed
               .addTo(map)
               .bindPopup(driver.name)
-              .on('click', () => {
-                
+              .on('click', (e) => {
+                L.popup()
+                  .setLatLng(e.latlng)
+                  .setContent(`<b>${driver.name}</b><br>${driver.address}`)
+                  .openOn(map);
               })
+              
               .openPopup();
           } else {
             console.warn("Skipping invalid address:", driver.address);
