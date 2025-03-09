@@ -2,11 +2,11 @@ const config = {
     driverInfo: [
         {
             name: 'John Doe',
-            address: '8208 Abelia Ct',
+            address: '8208 Abellia Ct, TX',
             number: '123456789',
             id: '10',
             deliveryDate: '2025-16-04',
-            destination: 'University of Texas @ Dallas'
+            destination: 'University of Texas at Dallas'
         },
         {
             name: 'Arush Lames',
@@ -17,12 +17,12 @@ const config = {
             destination: 'University of North Texas'
         },
         {
-            name: 'John Doe',
-            address: '8208 Abelia Ct',
-            number: '123456789',
-            id: '10',
-            deliveryDate: '2025-16-04',
-            destination: 'University of Texas @ Dallas'
+            name: 'Mary Johns',
+            address: '800 Sherbrook Dr',
+            number: '4694350953',
+            id: '12',
+            deliveryDate: '2025-12-04',
+            destination: 'Texas A&M University'
         }
 
     ]
