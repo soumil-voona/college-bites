@@ -1,39 +1,45 @@
 import React, { useState } from 'react';
-import './login.css'; // Ensure this path is correct
+import './login.css';
 
 const App = () => {
-  // Initial data, simulating the contents of "db.csv"
-  const initialCsvData = [
-    { name: 'John Doe', username: 'user1', password: 'pass1' },
-    { name: 'Jane Smith', username: 'user2', password: 'pass2' },
-    { name: 'Mark Lee', username: 'user3', password: 'pass3' },
-  ];
-
-  const [csvData, setCsvData] = useState(initialCsvData);
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
 
-  // Add new data to the CSV in memory and remove duplicates
-  const handleAddData = () => {
+  // Send data to the backend
+  const handleAddData = async () => {
     if (name && username && password) {
-      const newData = [...csvData, { name, username, password }];
-      console.log(newData);
+      const newData = { name, username, password };
 
-      // Remove duplicates based on 'username'
-      const uniqueData = newData.filter((value, index, self) =>
-        index === self.findIndex((t) => t.username === value.username)
-      );
+      try {
+        const response = await fetch('http://localhost:5000/add-data', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newData),
+        });
 
-      setCsvData(uniqueData);
-      setMessage('Signed Up!');
-      setName('');
-      setUsername('');
-      setPassword('');
+        if (response.ok) {
+          setMessage('Data added successfully!');
+          setName('');
+          setUsername('');
+          setPassword('');
+        } else {
+          setMessage('Failed to add data.');
+        }
+      } catch (error) {
+        setMessage('Error: ' + error.message);
+      }
     } else {
       setMessage('Please enter valid inputs.');
     }
+  };
+
+  // Download the updated db.csv file
+  const handleDownloadCSV = () => {
+    window.open('http://localhost:5000/download-csv', '_blank');
   };
 
   return (
@@ -74,6 +80,10 @@ const App = () => {
 
         <button onClick={handleAddData} className="loginBtn signUp">
           Sign Up
+        </button>
+
+        <button onClick={handleDownloadCSV} className="loginBtn" style={{ marginTop: '20px' }}>
+          Download Updated db.csv
         </button>
 
         <p className="signup" onClick={() => setMessage('Switch to Login')}>
