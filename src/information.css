@@ -13,8 +13,7 @@
     z-index: 10;
     position: absolute;
     top: 65vh;
-    width: 30vw;
-    height: 20vh;
+    padding: 20px;
     background-color: #510104;
     color: white;
     text-align: center;
@@ -30,7 +29,7 @@ span.txt{
     left: 10vw;
 }
 .driver {
-    left: 50vw;
+    left: 27.5vw;
 }
 .second{
     width: 100vw;
