@@ -1,10 +1,10 @@
 import LoginScreen from './LoginScreen';
-import './index.css';
+import MainWebpage from './MainWebpage'
 
 function App() {
   return (
     <div>
-      <LoginScreen/>
+      <MainWebpage />
     </div>
   );
 }

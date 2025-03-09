@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>React App</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic React Loading</title>
   </head>
-  <body style="background-color: #E0BABB;">
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="loginRoot"></div>
+  
+  <body style = 'background-color: #e0babb'>
+    <!-- Root element for React -->
+    <div id="root"></div>
+
+    <script>
+      // Function to load a React component dynamically
+      function loadReactComponent(componentPath) {
+        const script = document.createElement("script");
+        script.src = componentPath;
+        script.type = "module"; // Use module type for React components
+        document.body.appendChild(script);
+      }
+
+      // Determine which React file to load based on the URL
+      const path = window.location.pathname;
+      if (path === "/login") {
+        // Load the login React component
+        loadReactComponent("LoginScreen.js");
+      } else {
+        // Load the main app React component
+        loadReactComponent("App.js");
+      }
+    </script>
   </body>
 </html>

@@ -1,13 +1,17 @@
-/* eslint-disable no-unused-vars */
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import App from "./App";
+import LoginScreen from "./LoginScreen";
 
-const loginRoot = ReactDOM.createRoot(document.getElementById('loginRoot'));
-loginRoot.render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Routes>
+        <Route path="/" element={<App />} /> {/* Default route */}
+        <Route path="/login" element={<LoginScreen />} /> {/* Login route */}
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
