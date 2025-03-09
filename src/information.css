@@ -26,6 +26,11 @@
     align-items: center;
     justify-content: center;
 }
+
+.btn:hover{
+    background-color: #360103;
+}
+
 span.txt{
     font-size: 35px;
     margin: auto;
@@ -169,8 +174,5 @@ svg{
     display:flex;
     align-items: center;
     justify-content:center;
-}
-
-.buttonHomepage:hover{
-
+    float:left;
 }
