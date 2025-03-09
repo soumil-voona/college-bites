@@ -9,9 +9,9 @@ const Information = () => {
     <div className="info-opening">
         
         <MenuBar />
-        <h2 className="header">Share homemade love <br /> <span style={{ color: '#510104' }}>To your college doves</span></h2>
-        <a href = '/login'><div className = 'btn customer'><span className = 'btnTxt'>I am a customer</span></div> </a>
-        <a href='/driverPortal' ><div className = 'btn driver'><span className = 'btnTxt'>I am a driver</span></div></a>
+        <h2 className="header">Share homemade love <br /> <span style={{ color: '#510104' }}>With your college doves</span></h2>
+        <a href = '/login'><div className = 'buttonHomepage'><span className = 'btnTxt'>I am a customer</span></div> </a>
+        <a href='/driverPortal' ><div className = 'buttonHomepage'><span className = 'btnTxt'>I am a driver</span></div></a>
     </div>
     <div className="second">
         <h2 className = 'header about'>About <span style = {{color: '#E0BABB'}}>us</span></h2>
