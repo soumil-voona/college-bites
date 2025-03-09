@@ -1,142 +1,140 @@
-import React, { useState } from 'react';
-import './login.css'
+import React, { useState, useEffect } from "react";
 
-const App = () => {
-  // Initial data, simulating the contents of "db.csv"
-  const initialCsvData = [
-    { name: 'John Doe', username: 'user1', password: 'pass1' },
-    { name: 'Jane Smith', username: 'user2', password: 'pass2' },
-    { name: 'Mark Lee', username: 'user3', password: 'pass3' },
-  ];
+const SignUp = () => {
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [users, setUsers] = useState([
+    { name: "John Doe", username: "user1", password: "pass1" },
+    { name: "Jane Smith", username: "user2", password: "pass2" },
+    { name: "Mark Lee", username: "user3", password: "pass3" },
+  ]);
 
-  const [csvData, setCsvData] = useState(initialCsvData);
-  const [name, setName] = useState('');
-  const [monkey, setMonkey] = useState('');
-  const [monkeyP, setMonkeyP] = useState('');
-  const [message, setMessage] = useState('');
+  useEffect(() => {
+    console.log("Current Users Data:", users);
+  }, [users]);
 
-  // Add new data to the CSV in memory and remove duplicates
-  const handleAddData = () => {
-    if (name && monkey && monkeyP) {
-      const newData = [...csvData, { name, username: monkey, password: monkeyP }];
-      console.log(newData);
+  const handleSignUp = () => {
+    if (name && username && password) {
+      const newUser = { name, username, password };
+      
+      setUsers((prevUsers) => {
+        const updatedUsers = [...prevUsers, newUser].filter(
+          (user, index, self) =>
+            index === self.findIndex((u) => u.username === user.username)
+        );
+        return updatedUsers;
+      });
 
-      // Remove duplicates based on 'username'
-      const uniqueData = newData.filter((value, index, self) =>
-        index === self.findIndex((t) => (
-          t.username === value.username
-        ))
-      );
-
-      setCsvData(uniqueData);
-      setMessage('Signed Up!');
-      setName('');
-      setMonkey('');
-      setMonkeyP('');
+      setMessage("Signed Up!");
+      setName("");
+      setUsername("");
+      setPassword("");
     } else {
-      setMessage('Please enter valid inputs.');
+      setMessage("Please enter valid inputs.");
     }
   };
-  
+
   return (
-    <div className='bg'>
-      <h2 className = 'loginTxt'>Sign Up</h2>
+    <div style={{ width: "100vw", height: "100%", backgroundColor: "#E0BABB" }}>
+      <div style={{
+        width: "50%",
+        marginLeft: "25%",
+        position: "absolute",
+        height: "60vh",
+        backgroundColor: "#F5DEDF",
+        marginTop: "17.5vh",
+        borderRadius: "10px",
+        textAlign: "center"
+      }}>
+        <h2 style={{ fontFamily: "Poppins", fontSize: "4.5rem", marginTop: "2vh" }}>Sign Up</h2>
+        <p style={{ fontFamily: "Poppins" }}>Connect with us!</p>
 
-      <div >
-        <input
-          type="email"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          name="email"
-          placeholder='email: '
-          style={styles.input}
-        />
-      </div>
-
-      <div >
-        <label style={styles.label}>email</label>
         <input
           type="text"
-          value={monkey}
-          onChange={(e) => setMonkey(e.target.value)}
-          style={styles.input}
+          style={{
+            width: "40vw", height: "6vh", margin: "4vh 4vw", paddingLeft: "10px",
+            border: "1.5px solid black", borderRadius: "10px", fontSize: "15px"
+          }}
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
-      </div>
 
-      <div >
-        <label style={styles.label}>password:</label>
+        <input
+          type="text"
+          style={{
+            width: "40vw", height: "6vh", margin: "4vh 4vw", paddingLeft: "10px",
+            border: "1.5px solid black", borderRadius: "10px", fontSize: "15px"
+          }}
+          placeholder="Email"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+
         <input
           type="password"
-          value={monkeyP}
-          onChange={(e) => setMonkeyP(e.target.value)}
-          style={styles.input}
+          style={{
+            width: "40vw", height: "6vh", margin: "4vh 4vw", paddingLeft: "10px",
+            border: "1.5px solid black", borderRadius: "10px", fontSize: "15px"
+          }}
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
+
+        <button
+          style={{
+            backgroundColor: "#510104", color: "white", fontSize: "2rem", padding: "10px 20px",
+            borderRadius: "20px", border: "none", marginTop: "1rem"
+          }}
+          onClick={handleSignUp}
+        >
+          Sign Up
+        </button>
+
+        <p style={{ cursor: "pointer", color: "rgba(81, 1, 4, 0.63)", fontSize: "1rem" }} onClick={() => alert("Switch to Login")}>
+          Already have an account? Login
+        </p>
+        <p style={{ fontFamily: "Poppins", color: "#510104" }}>{message}</p>
+
+        {/* PyScript Integration */}
+        <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+        <py-script>
+import pandas as pd
+from js import document
+
+initial_csv_data = [
+    ['John Doe', 'user1', 'pass1'],
+    ['Jane Smith', 'user2', 'pass2'],
+    ['Mark Lee', 'user3', 'pass3']
+]
+
+csv_data = pd.DataFrame(initial_csv_data, columns=['name', 'username', 'password'])
+
+def handle_add_data(event):
+    name = document.getElementById("name").value
+    username = document.getElementById("username").value
+    password = document.getElementById("password").value
+    message = document.getElementById("message")
+
+    if name and username and password:
+        new_data = pd.DataFrame([[name, username, password]], columns=['name', 'username', 'password'])
+        global csv_data
+        csv_data = pd.concat([csv_data, new_data], ignore_index=True)
+        csv_data = csv_data.drop_duplicates(subset='username')
+        message.innerHTML = 'Signed Up!'
+        print(csv_data)
+    else:
+        message.innerHTML = 'Please enter valid inputs.'
+
+sign_up_btn = document.getElementById('signUpBtn')
+sign_up_btn.addEventListener('click', handle_add_data)
+        </py-script>
       </div>
-
-      <button onClick={handleAddData} style={styles.button}>Sign Up</button>
-
-      <p style={styles.message}>{message}</p>
     </div>
   );
 };
 
-// Styles for the UI
-const styles = {
-  container: {
-    maxWidth: '600px',
-    margin: '50px auto',
-    padding: '20px',
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    backgroundColor: '#f9f9f9',
-  },
-  header: {
-    textAlign: 'center',
-    color: '#333',
-  },
-  formGroup: {
-    marginBottom: '15px',
-  },
-  label: {
-    display: 'block',
-    marginBottom: '5px',
-    fontWeight: 'bold',
-  },
-  input: {
-    width: '100%',
-    padding: '8px',
-    borderRadius: '4px',
-    border: '1px solid #ccc',
-  },
-  button: {
-    width: '100%',
-    padding: '10px',
-    backgroundColor: '#4CAF50',
-    color: 'white',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    fontWeight: 'bold',
-  },
-  message: {
-    textAlign: 'center',
-    fontSize: '16px',
-    color: '#333',
-    marginTop: '10px',
-  },
-  table: {
-    width: '100%',
-    borderCollapse: 'collapse',
-    marginTop: '20px',
-  },
-  tableHeader: {
-    backgroundColor: '#f2f2f2',
-  },
-  tableData: {
-    padding: '8px',
-    textAlign: 'left',
-    border: '1px solid #ccc',
-  },
-};
-
-export default App;
+export default SignUp;
