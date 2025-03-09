@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css"; // Leaflet CSS for styling
 const GoogleMaps = ({ lat, lon }) => {
   useEffect(() => {
     const mapContainer = document.getElementById("map");
-    if (mapContainer) {
+    if (mapContainer && !mapContainer._leaflet_id) {
       // Initialize the map
       const map = L.map(mapContainer).setView([lat || 32.8136, lon || -96.9547], 10); // Default to a location if lat/lon are not provided
 
