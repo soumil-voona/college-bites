@@ -49,7 +49,7 @@ const SignUp = () => {
         textAlign: "center"
       }}>
         <h2 style={{ fontFamily: "Poppins", fontSize: "4.5rem", marginTop: "2vh" }}>Sign Up</h2>
-        <p style={{ fontFamily: "Poppins" }}>Connect with us!</p>
+        <p style={{ fontFamily: "Poppins" }}>Sign Up!!</p>
 
         <input
           type="text"
