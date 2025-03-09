@@ -57,6 +57,7 @@ const Map = () => {
         </button>
       </div>
       <GoogleMaps className='map' lat={location.lat} lon={location.lon} zoom = {13}/>
+      <div className='map-header' style ={{top: '100vh', fontSize: '2rem', left: '2vw', right: '2vw'}}>Select a driver near you and drop your food off to their address and pay 10 dollars to ship your homemade treats to your loved ones</div>
     </>
   );
 };
