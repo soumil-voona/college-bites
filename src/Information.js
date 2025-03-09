@@ -42,13 +42,21 @@ const Information = () => {
     </div>
     <div className="third">
         <h2 className = 'header about'>How it <span style = {{color: '#E0BABB'}}>works</span></h2>
-        <div className = 'help'>
-        <h3>
-            Helping College Students
-        </h3>
-        <p>
-            A common challenge faced by parents of college students is the desire to send homemade food to their children without having to make the trip themselves. Our website aims to address this issue by leveraging community-based carpooling methods to facilitate the delivery of homemade meals. Through our platform, parents can connect with trusted community members who are already traveling to college towns, ensuring that food reaches students efficiently and safely.
-        </p>
+        <div className = 'deliver'>
+            <h3>
+                Deliver Food
+            </h3>
+            <p>
+            Transport homemade meals from the community to college students and earn compensation for your service.
+            </p>
+        </div>
+        <div className = 'foodDelivered'>
+            <h3>
+                Get Food Delivered
+            </h3>
+            <p>
+                Hand off homemade meals to a designated driver and have them delivered safely to your college student.
+            </p>
         </div>
     </div>
     </>
