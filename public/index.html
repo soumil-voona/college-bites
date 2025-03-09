@@ -6,7 +6,7 @@
     <title>College Bites</title>
   </head>
 
-  <body style = 'background-color: #e0babb'>
+  <body style='background-color: #e0babb'>
     <!-- Root element for React -->
     <div id="root"></div>
     <script>
@@ -24,15 +24,14 @@
         // Load the login React component
         loadReactComponent("/LoginScreen.js");
       } else if (path === "/signup") {
-        loadReactComponent("/SignupScreen.js");
-      } else if (path === "/select"){
-        loadReactComponent("Information.js");
+        loadReactComponent("/SignupScreen.js")
+      } else if (path === "/select") {
+        loadReactComponent("/Information.js");
       } else if (path === "/driverPortal") {
-        loadReactComponent("driverPortal.js");
-      } else if (path === "/find"){
-        loadReactComponent("Map.js")
-      }
-      else {
+        loadReactComponent("/driverPortal.js");
+      } else if (path === "/find") {
+        loadReactComponent("/Map.js");
+      } else {
         loadReactComponent("/Information.js");
       }
     </script>
