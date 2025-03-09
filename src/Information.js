@@ -14,7 +14,7 @@ const Information = () => {
         <a href='/driverPortal' ><div className = 'btn driver'><span className = 'btnTxt'>I am a driver</span></div></a>
     </div>
     <div className="second">
-        <h2 className = 'header about'>About <span style = {{color: '#E0BABB'}}>us</span></h2>
+        <h2 id = 'AboutUs' className = 'header about'>About <span style = {{color: '#E0BABB'}}>us</span></h2>
         <div className = 'help'>
         <h3>
             Helping College Students
@@ -24,7 +24,7 @@ const Information = () => {
         </p>
         </div>
     </div>
-    <div className="third">
+    <div className="third" id = 'HowItWorks'>
         <h2 className = 'header about'>How it <span style = {{color: '#E0BABB'}}>works</span></h2>
         <div className = 'deliver'>
             <h3>
@@ -43,7 +43,7 @@ const Information = () => {
             </p>
         </div>
     </div>
-    <div className="fourth">
+    <div className="fourth" id = 'Information'>
         <h2 className = 'header about'>Box <span style = {{color: '#E0BABB'}}>Information</span></h2>
         <div className = 'measurements'>
             <h3>
