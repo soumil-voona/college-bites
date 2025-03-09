@@ -9,7 +9,7 @@
 }
 .header{
     font-family: Poppins;
-    font-size: 60px;
+    font-size: 5rem;
     position: absolute;
     top: 15vh;
     left: 10vw;
@@ -20,7 +20,9 @@
     align-items: center;
     position: fixed;
     z-index: 1;
-    margin-top: 4vh;
+    margin-top: 6vh;
+    margin-left: 3vw;
+    width: 100vw;
   }
   
   .logo-content {
@@ -28,8 +30,8 @@
     align-items: center;
     position: fixed;
     font-family: "Saira Stencil One";
-    font-size: 30px;
-
+    font-size: 3rem;
+    color: black;
   }
 @import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
   .logo-content svg {
@@ -49,4 +51,13 @@ img{
 }
 .unt{
     left: 70vw;
+}
+.menuBar{
+    width: 100vw;
+    top: 0;
+    left: 0;
+    height: 12vh;
+    background: #a48a8b;
+    position: fixed;
+    z-index: 9999999;
 }
