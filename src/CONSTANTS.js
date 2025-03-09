@@ -9,7 +9,7 @@ const config = {
             destination: 'University of Texas at Dallas'
         },
         {
-            name: 'Arush Lames',
+            name: 'Arush Dinesh Raja',
             address: '1120 Wilderness Trail',
             number: '9724352690',
             id: '11',
