@@ -54,7 +54,6 @@ const DriverPortal = () => {
       ) : (
         <>
           <div className='push'>
-            <span className='name list-header'>Name</span>
             <span className='date list-header'>Delivery Date</span>
             <span className='location list-header'>Location</span>
           </div>

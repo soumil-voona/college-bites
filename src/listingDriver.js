@@ -7,9 +7,6 @@ const listingDriver = ({ item }) => {
       <span className = 'center-align'>
         {item.deliveryDate}
       </span>
-      <span className = 'middle-align'>
-        {item.name}
-      </span>
       <span className='align-end'>
         {item.destination}
       </span>

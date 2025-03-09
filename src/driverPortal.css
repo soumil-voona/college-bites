@@ -17,7 +17,7 @@
 
 .list-header {
     position: relative;
-    left: 24vw;
+    left: 20vw;
     text-align: center;
     font-size: 2rem;
     font-family: Poppins;
@@ -29,11 +29,10 @@
 }
 .location {
     position: relative;
-    margin-left: 25.5vw;
-    left: 19vw;
+    margin: 30vw;
 }
 .date{
-    left: 37vw;
+    left: 24vw;
 }
 
 .new-listing-button {
