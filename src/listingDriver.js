@@ -4,7 +4,12 @@ import './listingDriver.css';
 const listingDriver = ({ item }) => {
   return (
     <div className='box center'>
-      {item.deliveryDate}, {item.destination}
+      <span>
+        {item.deliveryDate}
+      </span>
+      <span className='align-end'>
+        {item.destination}
+      </span>
     </div>
   )
 }
