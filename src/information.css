@@ -28,11 +28,18 @@ span.txt{
     margin: auto;
     font-family: Poppins;
 }
+
 .customer{
     left: 10vw;
+    color: white;
+    font-family: Poppins;
+    font-size: 2rem;
 }
 .driver {
     left: 35vw;
+    color:white;
+    font-family: Poppins;
+    font-size: 2rem;
 }
 .second{
     width: 100vw;
