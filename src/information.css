@@ -8,6 +8,7 @@
 }
 .header{
     color: #000;
+    font-weight: 700;
 }
 .btn{
     z-index: 10;
@@ -22,7 +23,14 @@
     border-radius: 30px;
     width: 20vw;
     height: 5vw;
+    align-items: center;
+    justify-content: center;
 }
+
+.btn:hover{
+    background-color: #360103;
+}
+
 span.txt{
     font-size: 35px;
     margin: auto;
@@ -30,16 +38,18 @@ span.txt{
 }
 
 .customer{
-    left: 10vw;
+    left: 19vw;
     color: white;
     font-family: Poppins;
     font-size: 2rem;
+    text-align: center;
 }
 .driver {
-    left: 35vw;
+    left: 59vw;
     color:white;
     font-family: Poppins;
     font-size: 2rem;
+    margin: auto;
 }
 .second{
     width: 100vw;
@@ -146,3 +156,24 @@ svg{
     display: flex;
     align-items: center;
 }
+
+@keyframes highlightBlock{
+    0%   {background-color: #e3aaad;}
+    25%  {background-color: #e2999d;}
+    50%  {background-color: rgb(234, 139, 143);}
+    }
+      
+.menu:hover{
+    background-color:rgb(233, 129, 135);
+    color: black;
+}
+
+.menu{
+    height: 12vh;
+    width:12vw;
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    float:left;
+}
+/*Ifnlkjsdaflajsdflkasjdfl;*/
