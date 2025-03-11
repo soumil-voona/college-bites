@@ -48,7 +48,7 @@ const Information = () => {
       </div>
 
       <div className={`second fade-in ${inView.second ? 'in-view' : ''}`} id="second">
-        <h2 className="header about">About <span style={{ color: '#E0BABB' }}>us</span></h2>
+        <h2 className="header about" id = 'AboutUs'>About <span style={{ color: '#E0BABB' }}>us</span></h2>
         <div className="help">
           <h3>Helping College Students</h3>
           <p>
@@ -58,7 +58,7 @@ const Information = () => {
       </div>
 
       <div className={`third fade-in ${inView.third ? 'in-view' : ''}`} id="third">
-        <h2 className="header about">How it <span style={{ color: '#E0BABB' }}>works</span></h2>
+        <h2 className="header about" id = 'HowItWorks'>How it <span style={{ color: '#E0BABB' }}>works</span></h2>
         <div className="deliver">
           <h3>Deliver Food</h3>
           <p>
@@ -74,7 +74,7 @@ const Information = () => {
       </div>
 
       <div className={`fourth fade-in ${inView.fourth ? 'in-view' : ''}`} id="fourth">
-        <h2 className="header about">Box <span style={{ color: '#E0BABB' }}>Information</span></h2>
+        <h2 className="header about" id = 'Information'>Box <span style={{ color: '#E0BABB' }}>Information</span></h2>
         <div className="measurements">
           <h3>Food Measurements</h3>
           <p>
