@@ -1,107 +1,141 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
+import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { getFirestore, doc, setDoc } from 'firebase/firestore'; // Import Firestore
+import './SignupScreen.css'; // Import the CSS file
 
-const SignUp = () => {
-  const [name, setName] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
-  const [users, setUsers] = useState([
-    { name: "John Doe", username: "user1", password: "pass1" },
-    { name: "Jane Smith", username: "user2", password: "pass2" },
-    { name: "Mark Lee", username: "user3", password: "pass3" },
-  ]);
+const SignupScreen = () => {
+    // Initialize Firebase authentication, Firestore, and navigation
+    const auth = getAuth();
+    const db = getFirestore(); // Initialize Firestore
+    const navigate = useNavigate();
+    
+    // State variables for managing authentication state, email, password, confirm password, and error messages
+    const [authing, setAuthing] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [name, setName] = useState(''); // Add state for name
 
-  useEffect(() => {
-    console.log("Current Users Data:", users);
-  }, [users]);
+    // Function to handle sign-up with Google
+    const signUpWithGoogle = async () => {
+        setAuthing(true);
+        
+        // Use Firebase to sign up with Google
+        signInWithPopup(auth, new GoogleAuthProvider())
+            .then(response => {
+                console.log(response.user.uid);
+                navigate('/login');
+            })
+            .catch(error => {
+                console.log(error);
+                setAuthing(false);
+            });
+    };
 
-  const handleSignUp = () => {
-    if (name && username && password) {
-      const newUser = { name, username, password };
-      
-      setUsers((prevUsers) => {
-        const updatedUsers = [...prevUsers, newUser].filter(
-          (user, index, self) =>
-            index === self.findIndex((u) => u.username === user.username)
-        );
-        return updatedUsers;
-      });
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                const name = user.displayName;
+                const uid = user.uid;
 
-      setMessage("Signed Up!");
-      setName("");
-      setUsername("");
-      setPassword("");
-    } else {
-      setMessage("Please enter valid inputs.");
-    }
-  };
+                const docRef = doc(db, "users", uid);
+                await setDoc(docRef, {
+                    name: name,
+                    email: user.email,
+                    createdAt: new Date()
+                    // Add other user data as needed
+                });
+            }
+        });
 
-  return (
-    <div style={{ width: "100vw", height: "100%", backgroundColor: "#E0BABB" }}>
-      <div style={{
-        width: "50%",
-        marginLeft: "25%",
-        position: "absolute",
-        height: "60vh",
-        backgroundColor: "#F5DEDF",
-        marginTop: "17.5vh",
-        borderRadius: "10px",
-        textAlign: "center"
-      }}>
-        <h2 style={{ fontFamily: "Poppins", fontSize: "4.5rem", marginTop: "2vh" }}>Sign Up</h2>
-        <p style={{ fontFamily: "Poppins" }}>Sign Up!!</p>
+        return () => unsubscribe();
+    }, [auth, db]);
 
-        <input
-          type="text"
-          style={{
-            width: "40vw", height: "6vh", margin: "4vh 4vw", paddingLeft: "10px",
-            border: "1.5px solid black", borderRadius: "10px", fontSize: "15px"
-          }}
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+    // Function to handle sign-up with email and password
+    const signUpWithEmail = async () => {
+        // Check if passwords match
 
-        <input
-          type="text"
-          style={{
-            width: "40vw", height: "6vh", margin: "4vh 4vw", paddingLeft: "10px",
-            border: "1.5px solid black", borderRadius: "10px", fontSize: "15px"
-          }}
-          placeholder="Email"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+        setAuthing(true);
+        setError('');
 
-        <input
-          type="password"
-          style={{
-            width: "40vw", height: "6vh", margin: "4vh 4vw", paddingLeft: "10px",
-            border: "1.5px solid black", borderRadius: "10px", fontSize: "15px"
-          }}
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        try {
+            // Use Firebase to create a new user with email and password
+            const response = await createUserWithEmailAndPassword(auth, email, password);
+            console.log(response.user.uid);
 
-        <button
-          style={{
-            backgroundColor: "#510104", color: "white", fontSize: "2rem", padding: "10px 20px",
-            borderRadius: "20px", border: "none", marginTop: "1rem"
-          }}
-          onClick={handleSignUp}
-        >
-          Sign Up
-        </button>
+            // Add user data to Firestore with retry logic
+            const addUserToFirestore = async () => {
+              await setDoc(doc(db, 'users', response.user.uid), {
+                  name: name,
+                  email: email,
+                  createdAt: new Date()
+              });
+              navigate('/login');
+            };
 
-        <p style={{ cursor: "pointer", color: "rgba(81, 1, 4, 0.63)", fontSize: "1rem" }} onClick={() => alert("Switch to Login")}>
-          Already have an account? Login
-        </p>
-        <p style={{ fontFamily: "Poppins", color: "#510104" }}>{message}</p>
+            await addUserToFirestore();
+        } catch (error) {
+            console.error('Error creating user:', error);
+            setError(error.message);
+            setAuthing(false);
+        }
+    };
 
-      </div>
-    </div>
-  );
+    return (
+        <div className="container">
+            <div className="signup-box">
+                <h2 className="signup-title">Sign Up</h2>
+
+                <input
+                    type="text"
+                    className="input-field"
+                    placeholder="Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
+
+                <input
+                    type='email'
+                    placeholder="Email"
+                    className="input-field"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+
+                <input
+                    type="password"
+                    placeholder='Password'
+                    className="input-field"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+
+                {error && <div className="error-message">{error}</div>}
+
+                <button
+                    className="signup-button"
+                    onClick={signUpWithEmail}
+                    disabled={authing}
+                >
+                    Sign Up With Email and Password
+                </button>
+                <br />
+                <button
+                    className="signup-button-google"
+                    onClick={signUpWithGoogle}
+                    disabled={authing}
+                >
+                    Sign Up With Google
+                </button>
+                <a href = '/login'>
+                <p className="login-link">
+                    Already have an account? Login
+                </p>
+                </a>
+            </div>
+        </div>
+    );
 };
 
-export default SignUp;
+export default SignupScreen;
