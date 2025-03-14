@@ -77,7 +77,6 @@ const GoogleMaps = ({ lat, lon }) => {
           if (coords) {
             L.marker(coords, { icon: workerIcon }) // Make sure valid coordinates are passed
               .addTo(map)
-              .bindPopup(driver.name)
               .on('click', (e) => {
                 L.popup()
                   .setLatLng(e.latlng)
