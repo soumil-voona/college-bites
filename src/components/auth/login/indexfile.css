@@ -153,7 +153,7 @@ a{
     transition: background-color 0.3s ease;
 }
   
-/* .loginBtn:hover {
+.loginBtn:hover {
     background-color: #6d0204;
 }
   
@@ -204,7 +204,7 @@ a{
 
 /* Style for Driver and Customer Buttons */
 .driver-customer-buttons {
-    width: 80%;
+    width: 100%;
     display: flex;
     gap: 1rem;
     margin-bottom: 0vh;
@@ -212,7 +212,7 @@ a{
 
 .driver-customer-buttons button {
     width: 48%;
-    padding: 0.5px;
+    padding: 15px;
     font-size: 1.25rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
@@ -252,187 +252,4 @@ a{
 
 .driver-customer-buttons .customer-btn.active {
     background-color: #1976D2; /* Darker blue when active */
-}
-.driver-btn, .customer-btn {
-    padding: 10px 20px;
-    border-radius: 12px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.2rem;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 48%;
-}
-
-.driver-btn.active, .customer-btn.active {
-    background-color: #4c2d92; /* Active button background color */
-}
-
-.driver-btn:hover, .customer-btn:hover {
-    background-color: #3e1e6b; /* Hover effect */
-}
-/* General button styling */
-.driver-customer-buttons {
-    display: flex;
-    gap: 10px; /* Add space between buttons */
-    margin-top: 20px;
-    justify-content: center;
-}
-
-.driver-btn, .customer-btn {
-    background-color: #f0f0f0; /* Light grey background */
-    border: 2px solid #ccc; /* Border color */
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.3s, border-color 0.3s;
-    color: #333;
-    width: 120px;
-    text-align: center;
-}
-
-/* Style when active (role is selected) */
-.driver-btn.active, .customer-btn.active {
-    background-color: #4CAF50; /* Green background for active state */
-    border-color: #4CAF50; /* Same color as background */
-    color: white; /* White text when active */
-}
-
-.driver-btn:hover, .customer-btn:hover {
-    background-color: #ddd; /* Slight hover effect with light grey */
-}
-
-.driver-btn.active:hover, .customer-btn.active:hover {
-    background-color: #45a049; /* Darker green when active and hovered */
-}
-
-/* Disabled state (while registration is in progress) */
-.driver-btn:disabled, .customer-btn:disabled {
-    background-color: #ccc; /* Light grey background when disabled */
-    border-color: #bbb; /* Lighter border */
-    color: #888; /* Grey text */
-    cursor: not-allowed; /* Disable pointer when disabled */
-}
-
-/* Optional styles for when there is error or something else */
-.text-red-600 {
-    color: red;
-}
-
-/* Add spacing and alignment adjustments */
-.inputContainer {
-    margin-bottom: 20px;
-}
-
-.loginTxt {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.loginBtn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.loginBtn:hover {
-    background-color: #0056b3;
-}
-
-.loginBtn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-} */
-/* General button styling */
-.driver-customer-buttons {
-    display: flex;
-    gap: 10px; /* Add space between buttons */
-    margin-top: 20px;
-    justify-content: center;
-}
-
-.driver-btn, .customer-btn {
-    background-color: #f0f0f0; /* Light grey background */
-    border: 2px solid #ccc; /* Border color */
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.3s, border-color 0.3s;
-    color: #333;
-    width: 120px;
-    text-align: center;
-}
-
-/* Style when active (role is selected) */
-.driver-btn.active, .customer-btn.active {
-    background-color: #4CAF50; /* Green background for active state */
-    border-color: #4CAF50; /* Same color as background */
-    color: white; /* White text when active */
-}
-
-.driver-btn:hover, .customer-btn:hover {
-    background-color: #ddd; /* Slight hover effect with light grey */
-}
-
-.driver-btn.active:hover, .customer-btn.active:hover {
-    background-color: #45a049; /* Darker green when active and hovered */
-}
-
-/* Disabled state (while registration is in progress) */
-.driver-btn:disabled, .customer-btn:disabled {
-    background-color: #ccc; /* Light grey background when disabled */
-    border-color: #bbb; /* Lighter border */
-    color: #888; /* Grey text */
-    cursor: not-allowed; /* Disable pointer when disabled */
-}
-
-/* Optional styles for when there is error or something else */
-.text-red-600 {
-    color: red;
-}
-
-/* Add spacing and alignment adjustments */
-.inputContainer {
-    margin-bottom: 20px;
-}
-
-.loginTxt {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.loginBtn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    width: 100%;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.loginBtn:hover {
-    background-color: #0056b3;
-}
-
-.loginBtn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
 }

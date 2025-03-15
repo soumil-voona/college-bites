@@ -26,6 +26,17 @@ const MenuBar = () => {
             Information
           </div>
           </a>
+          <a href='/login'>
+          <div className='menu'>
+            Login
+          </div>
+          </a>
+          <a href='/register'>
+          <div className='menu'>
+            Register
+          </div>
+          </a>
+          
         </span>
       </div>
     </div>
