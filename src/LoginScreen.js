@@ -1,46 +1,47 @@
-import { useState } from 'react';
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import './login.css'; // Ensure this import is included to load the CSS
 
 function App() {
-  const auth = getAuth();
-  const navigate = useNavigate();
-  
-  // State variables for managing authentication state, email, password, and error messages
-  const [authing, setAuthing] = useState(false);
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
+  const [csvData, setCsvData] = useState([]);
 
-  const signInWithGoogle = async () => {
-    setAuthing(true);
-    
-    try {
-      // Use Firebase to sign in with Google
-      const response = await signInWithPopup(auth, new GoogleAuthProvider());
-      console.log(response.user.uid);
-      navigate('/');
-    } catch (error) {
-      console.error('Error during sign-in with Google:', error);
-      setAuthing(false);
-    }
+  // Fetch and parse the CSV data from the db.csv file
+  useEffect(() => {
+    fetch('/db.csv')
+      .then((response) => response.text())
+      .then((data) => {
+        const parsedData = parseCSV(data);
+        setCsvData(parsedData);
+      })
+      .catch((error) => {
+        console.error('Error fetching CSV:', error);
+      });
+  }, []);
+
+  // Simple CSV parser function
+  const parseCSV = (csvText) => {
+    const rows = csvText.split('\n');
+    const data = rows.map((row) => {
+      const columns = row.split(',');
+      return {
+        username: columns[0].trim(),
+        password: columns[1].trim(),
+      };
+    });
+    return data;
   };
 
-  // Function to handle sign-in with email and password
-  const signInWithEmail = async () => {
-    setAuthing(true);
-    setError('');
-
-    try {
-      // Use Firebase to sign in with email and password
-      const response = await signInWithEmailAndPassword(auth, email, password);
-      console.log(response.user.uid);
-      navigate('/');
-    } catch (error) {
-      console.error('Error during sign-in with email and password:', error);
-      setError(error.message);
-      setAuthing(false);
+  // Handle login attempt
+  const handleLogin = () => {
+    const user = csvData.find(
+      (userData) => userData.username === username && userData.password === password
+    );
+    if (user) {
+      setMessage('Success, iniyann!');
+    } else {
+      setMessage('Invalid credentials, please try again.');
     }
   };
 
@@ -50,10 +51,10 @@ function App() {
         <h1 className="loginTxt">Login</h1>
 
         <input
-          type='email'
-          placeholder='Email'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           className="inputField"
         />
         <input
@@ -63,23 +64,16 @@ function App() {
           onChange={(e) => setPassword(e.target.value)}
           className="inputField password"
         />
+        <div className="forgotPw">Forgot Password?</div>
+        <button className="loginBtn" onClick={handleLogin}>Login</button>
 
-        <button 
-          className="loginBtn" 
-          onClick={signInWithEmail}
-          disabled={authing}>
-            Log In With Email and password
-        </button>
-        {error && <div className='text-red-500 mb-4'>{error}</div>}
+        {message && (
+          <p style={{ textAlign: 'center', color: message.includes('Success') ? 'green' : 'red' }}>
+            {message}
+          </p>
+        )}
 
-        <button 
-          className="loginBtn-Google" 
-          onClick={signInWithGoogle}
-          disabled={authing}>
-            Log In With Google
-        </button>
-
-        <a href = '/signup'> <div className="signup">Don't have an account? Sign up here</div> </a>
+        <div className="signup">Don't have an account? Sign up here</div>
       </div>
     </div>
   );
