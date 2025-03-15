@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCFcUuuglAj0nsBakJifVHlkzqKsuktdc8",
+  apiKey: "",
   authDomain: "collegebites-eb1a0.firebaseapp.com",
   projectId: "collegebites-eb1a0",
   storageBucket: "collegebites-eb1a0.firebasestorage.app",
-  messagingSenderId: "1085974052839",
-  appId: "1:1085974052839:web:0b197211918bdce33a0742",
+  messagingSenderId: "",
+  appId: "",
   measurementId: "G-YWWBQXVZ6N"
 };
 
