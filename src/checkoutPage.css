@@ -1,0 +1,124 @@
+body {
+    background-color: #510104;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.checkout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px;
+    background-color: #f9e5e5;
+    border-radius: 15px;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+}
+
+.checkout-form {
+    width: 100%;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+}
+
+.checkout-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #510104;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    font-size: 16px;
+    background-color: #f3f3f3;
+}
+
+.input-group input::placeholder {
+    color: #777;
+}
+
+.input-group input:focus {
+    border-color: #510104;
+    outline: none;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    text-align: left;
+}
+
+.checkout-button {
+    width: 100%;
+    padding: 14px;
+    background-color: #510104;
+    color: white;
+    border: none;
+    font-size: 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.checkout-button:hover {
+    background-color: #7a0e0e;
+}
+
+.suggestions {
+    position: absolute;
+    width: 100%;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.suggestions div {
+    padding: 12px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.suggestions div:hover {
+    background-color: #f1f1f1;
+}
+
+input:focus + .suggestions {
+    display: block;
+}
+
+@media screen and (max-width: 600px) {
+    .checkout-container {
+    width: 100%;
+    padding: 20px;
+    }
+
+    .checkout-form {
+    padding: 20px;
+    }
+}

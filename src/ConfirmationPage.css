@@ -1,0 +1,142 @@
+/* Main container for the confirmation page */
+.confirmation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+  }
+  
+  .confirmation-container h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .confirmation-container p {
+    font-size: 1.1rem;
+    color: #555;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .confirmation-container .leaflet-container {
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Light shadow */
+  }
+  
+  .confirmation-container .loading-message {
+    font-size: 1.2rem;
+    color: #007bff;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .confirmation-container .error-message {
+    font-size: 1.2rem;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .confirmation-container .map-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* Max width for better responsiveness */
+    height: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .confirmation-container .map-container .leaflet-container {
+    height: 100%;
+  }
+  /* Main container for the confirmation page */
+.confirmation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+  }
+  
+  .confirmation-container h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .confirmation-container p {
+    font-size: 1.1rem;
+    color: #555;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .confirmation-container .leaflet-container {
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Light shadow */
+  }
+  
+  .confirmation-container .loading-message {
+    font-size: 1.2rem;
+    color: #007bff;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  .confirmation-container .map-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* Max width for better responsiveness */
+    height: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .confirmation-container .map-container .leaflet-container {
+    height: 100%;
+  }
+  
+  /* Styling for the confirmation buttons */
+  .confirmation-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 15px;
+  }
+  
+  .confirmation-buttons button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s;
+    width: 100px;
+  }
+  
+  .confirmation-buttons .btn-yes {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .confirmation-buttons .btn-yes:hover {
+    background-color: #218838;
+  }
+  
+  .confirmation-buttons .btn-no {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .confirmation-buttons .btn-no:hover {
+    background-color: #c82333;
+  }
+  
