@@ -1,6 +1,13 @@
 import React from 'react';
 
 const MenuBar = () => {
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' }); // Adjusted to 'center' for less scrolling
+    }
+  };
+
   return (
     <div className='menuBar'>
       <div className="logo">
@@ -11,32 +18,21 @@ const MenuBar = () => {
             </svg>
             College Bites
           </a>
-          <a href='/#AboutUs'>
-            <div className='menu'>
-              About Us
-            </div>
-          </a>
-          <a href='/#HowItWorks'>
-          <div className='menu'>
+          <div className='menu' onClick={() => scrollToSection('AboutUs')}>
+            About Us
+          </div>
+          <div className='menu' onClick={() => scrollToSection('HowItWorks')}>
             How It Works
           </div>
-          </a>
-          <a href='/#Information'>
-          <div className='menu'>
+          <div className='menu' onClick={() => scrollToSection('Information')}>
             Information
           </div>
-          </a>
           <a href='/login'>
-          <div className='menu'>
-            Login
-          </div>
+            <div className='menu'>Login</div>
           </a>
           <a href='/register'>
-          <div className='menu'>
-            Register
-          </div>
+            <div className='menu'>Register</div>
           </a>
-          
         </span>
       </div>
     </div>

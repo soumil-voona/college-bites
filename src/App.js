@@ -2,7 +2,6 @@ import Login from "./components/auth/login";
 import Register from "./components/auth/register/";
 
 import Header from "./components/header";
-import Home from "./components/home"
 
 import Information from "./Information";
 import MainWebpage from "./MainWebpage";
