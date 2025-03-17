@@ -29,7 +29,7 @@ const GoogleMaps = ({ lat, lon }) => {
       iconAnchor: [22, 38],
       popupAnchor: [-3, -76],
     });
-    // Validate custom icon loading
+    // Validate custom icon loading!
     const validateIcon = (iconUrl) => {
       const img = new Image();
       img.src = iconUrl;
