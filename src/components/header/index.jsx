@@ -27,6 +27,8 @@ const Header = () => {
             cursor: pointer;
             border-radius: 5px;
             transition: background-color 0.3s ease;
+            bottom: 20px;
+            right: 20px;
           }
 
           .logout:hover {

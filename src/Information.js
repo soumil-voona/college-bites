@@ -7,34 +7,37 @@ import MenuBar from './MenuBar';
 const Information = () => {
   const [inView, setInView] = useState({
     opening: false,
-    aboutUs: false,
-    howItWorks: false,
-    information: false,
+    second: false,
+    third: false,
+    fourth: false,
   });
 
   const navigate = useNavigate();
-  const { userLoggedIn } = useAuth();
+  const { userLoggedIn } = useAuth(); // Get login status from Firebase auth
 
   const handleNavigation = (path) => {
     if (userLoggedIn) {
       navigate(path);
     } else {
-      navigate('/login');
+      navigate('/login'); // Redirect to login if not logged in
     }
   };
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
+        console.log(`Observing: ${entry.target.id}, Is in view: ${entry.isIntersecting}`); // Debugging
         if (entry.isIntersecting) {
           setInView((prev) => ({ ...prev, [entry.target.id]: true }));
         }
       });
     }, { threshold: 0.5 });
-
+  
     const sections = document.querySelectorAll('.fade-in');
+    console.log("Sections detected:", sections); // Debugging
+    
     sections.forEach((section) => observer.observe(section));
-
+  
     return () => {
       sections.forEach((section) => observer.unobserve(section));
     };
@@ -42,10 +45,8 @@ const Information = () => {
 
   return (
     <>
-      <MenuBar />
-
-      {/* Opening Section */}
       <div className={`info-opening fade-in ${inView.opening ? 'in-view' : ''}`} id="opening">
+        <MenuBar />
         <h2 className="header">
           Share homemade love <br />
           <span style={{ color: '#510104' }}>With your college doves</span>
@@ -58,53 +59,54 @@ const Information = () => {
         </div>
       </div>
 
-      {/* About Us Section */}
-      <div className={`second fade-in ${inView.aboutUs ? 'in-view' : ''}`} id="AboutUs">
+      <div className={`second fade-in ${inView.second ? 'in-view' : ''}`} id="second">
         <h2 className="header about">About <span style={{ color: '#E0BABB' }}>us</span></h2>
         <div className="help">
           <h3>Helping College Students</h3>
           <p>
-            A common challenge faced by parents of college students is the desire to send homemade food to their children without having to make the trip themselves. Our website aims to address this issue by leveraging community-based carpooling methods to facilitate the delivery of homemade meals. 
+            A common challenge faced by parents of college students is the desire to send homemade food to their children without having to make the trip themselves. Our website aims to address this issue by leveraging community-based carpooling methods to facilitate the delivery of homemade meals. Through our platform, parents can connect with trusted community members who are already traveling to college towns, ensuring that food reaches students efficiently and safely.
           </p>
         </div>
       </div>
 
-      {/* How It Works Section */}
-      <div className={`third fade-in ${inView.howItWorks ? 'in-view' : ''}`} id="HowItWorks">
+      <div className={`third fade-in ${inView.third ? 'in-view' : ''}`} id="third">
         <h2 className="header about">How it <span style={{ color: '#E0BABB' }}>works</span></h2>
         <div className="deliver">
           <h3>Deliver Food</h3>
-          <p>Transport homemade meals from the community to college students and earn compensation for your service.</p>
+          <p>
+            Transport homemade meals from the community to college students and earn compensation for your service.
+          </p>
         </div>
         <div className="foodDelivered">
           <h3>Get Food Delivered</h3>
-          <p>Hand off homemade meals to a designated driver and have them delivered safely to your college student.</p>
+          <p>
+            Hand off homemade meals to a designated driver and have them delivered safely to your college student.
+          </p>
           <button className="redirect-button" onClick={() => navigate('/products')}>
             View Products
           </button>
         </div>
       </div>
 
-      {/* Box Information Section */}
-      <div className={`fourth fade-in ${inView.information ? 'in-view' : ''}`} id="Information">
+      <div className={`fourth fade-in ${inView.fourth ? 'in-view' : ''}`} id="fourth">
+
         <h2 className="header about">Box <span style={{ color: '#E0BABB' }}>Information</span></h2>
         <div className="measurements">
           <h3>Food Measurements</h3>
           <p>
-            <img src="./images/boxSize.png" alt="Box Dimensions" style={{ width: '30vw', marginTop: '-8vh' }} />
+            <img src="./images/boxSize.png" alt="dimensions" style={{ width: '30vw', marginTop: '-8vh' }} />
           </p>
         </div>
         <div className="foodDelivered">
           <h3>Food Capacity:</h3>
           <p>
-            Coupe: 10-15 boxes <br />
-            Sedan: 20-24 boxes <br />
-            SUVs and Minivans: 75-100 boxes
+            coupe: 10-15 boxes <br /><br />
+            sedan: 20-24 boxes <br /><br />
+            SUVs and minivans: 75-100 boxes
           </p>
         </div>
       </div>
     </>
-  );
-};
-
+  )
+}
 export default Information;
