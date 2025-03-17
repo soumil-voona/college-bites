@@ -70,6 +70,9 @@ const Information = () => {
           <p>
             Hand off homemade meals to a designated driver and have them delivered safely to your college student.
           </p>
+          <button className="redirect-button" onClick={() => window.location.href = '/products'}>
+            View Products
+          </button>
         </div>
       </div>
 

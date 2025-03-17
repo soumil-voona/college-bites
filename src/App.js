@@ -10,6 +10,7 @@ import DriverPortal from "./driverPortal";
 import Map from "./Map";
 import CheckoutPage from "./checkoutPage"
 import ConfirmationPage from "./ConfirmationPage";
+import ProductPage from "./ProductPage"
 
 import { AuthProvider } from "./contexts/authContext";
 import { useRoutes } from "react-router-dom";
@@ -56,6 +57,10 @@ function App() {
     {
       path: "/confirmation",
       element: <ConfirmationPage />
+    },
+    {
+      path: "/products",
+      element: <ProductPage />
     },
     
   ];
