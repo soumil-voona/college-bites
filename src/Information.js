@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './contexts/authContext';
 import './information.css';
 import MenuBar from './MenuBar';
 
@@ -10,18 +12,32 @@ const Information = () => {
     fourth: false,
   });
 
+  const navigate = useNavigate();
+  const { userLoggedIn } = useAuth(); // Get login status from Firebase auth
+
+  const handleNavigation = (path) => {
+    if (userLoggedIn) {
+      navigate(path);
+    } else {
+      navigate('/login'); // Redirect to login if not logged in
+    }
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
+        console.log(`Observing: ${entry.target.id}, Is in view: ${entry.isIntersecting}`); // Debugging
         if (entry.isIntersecting) {
           setInView((prev) => ({ ...prev, [entry.target.id]: true }));
         }
       });
     }, { threshold: 0.5 });
-
+  
     const sections = document.querySelectorAll('.fade-in');
+    console.log("Sections detected:", sections); // Debugging
+    
     sections.forEach((section) => observer.observe(section));
-
+  
     return () => {
       sections.forEach((section) => observer.unobserve(section));
     };
@@ -35,16 +51,12 @@ const Information = () => {
           Share homemade love <br />
           <span style={{ color: '#510104' }}>With your college doves</span>
         </h2>
-        <a href="/find">
-          <div className="btn customer">
-            <span className="btnTxt">I am a customer</span>
-          </div>
-        </a>
-        <a href="/driverPortal">
-          <div className="btn driver">
-            <span className="btnTxt">I am a driver</span>
-          </div>
-        </a>
+        <div className="btn customer" onClick={() => handleNavigation('/find')}>
+          <span className="btnTxt">I am a customer</span>
+        </div>
+        <div className="btn driver" onClick={() => handleNavigation('/driverPortal')}>
+          <span className="btnTxt">I am a driver</span>
+        </div>
       </div>
 
       <div className={`second fade-in ${inView.second ? 'in-view' : ''}`} id="second">
@@ -70,13 +82,14 @@ const Information = () => {
           <p>
             Hand off homemade meals to a designated driver and have them delivered safely to your college student.
           </p>
-          <button className="redirect-button" onClick={() => window.location.href = '/products'}>
+          <button className="redirect-button" onClick={() => navigate('/products')}>
             View Products
           </button>
         </div>
       </div>
 
       <div className={`fourth fade-in ${inView.fourth ? 'in-view' : ''}`} id="fourth">
+
         <h2 className="header about">Box <span style={{ color: '#E0BABB' }}>Information</span></h2>
         <div className="measurements">
           <h3>Food Measurements</h3>
@@ -94,7 +107,6 @@ const Information = () => {
         </div>
       </div>
     </>
-  );
-};
-
+  )
+}
 export default Information;

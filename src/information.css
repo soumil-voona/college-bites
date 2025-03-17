@@ -162,6 +162,10 @@ h3 {
     height: 90vh;
     position: absolute;
     background-color: #510104;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    background: rgb(81, 0, 0)
 }
 
 .measurements {
@@ -234,4 +238,5 @@ svg {
   .redirect-button:active {
     transform: translateY(1px);
   }
+
   
