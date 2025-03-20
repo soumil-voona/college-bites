@@ -15,9 +15,9 @@ const MainWebpage = () => {
       </div>
       
         <h2 className="header">Select your <span style={{ color: '#D48427' }}>college</span></h2>
-      <a href = '/info'><img src = './images/utd.png' alt='utd' className = 'utd'></img></a>
-      <a href = '/info'><img src = './images/atm.png' alt='utd' className = 'atm'></img></a>
-      <a href = '/info'><img src = './images/unt.png' alt='utd' className = 'unt'></img></a>
+      <a href = '/find?college=utd'><img src = './images/utd.png' alt='utd' className = 'utd'></img></a>
+      <a href = '/find?college=atm'><img src = './images/atm.png' alt='aTm' className = 'atm'></img></a>
+      <a href = '/find?college=unt'><img src = './images/unt.png' alt='unt' className = 'unt'></img></a>
     </div>
     </>
   );

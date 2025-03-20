@@ -20,17 +20,24 @@ const SignupScreen = () => {
     // Function to handle sign-up with Google
     const signUpWithGoogle = async () => {
         setAuthing(true);
-        
-        // Use Firebase to sign up with Google
-        signInWithPopup(auth, new GoogleAuthProvider())
-            .then(response => {
-                console.log(response.user.uid);
-                navigate('/login');
-            })
-            .catch(error => {
-                console.log(error);
-                setAuthing(false);
+
+        try {
+            const response = await signInWithPopup(auth, new GoogleAuthProvider());
+            const uid = response.user.uid;
+
+            // Add user data to Firestore
+            const docRef = doc(db, "users", uid);
+            await setDoc(docRef, {
+                name: response.user.displayName,
+                email: response.user.email,
+                createdAt: new Date()
             });
+
+            navigate('/'); // Navigate to the home page after successful signup
+        } catch (error) {
+            console.error('Error during Google signup:', error);
+            setAuthing(false);
+        }
     };
 
     useEffect(() => {

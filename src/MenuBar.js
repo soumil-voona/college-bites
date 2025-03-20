@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from './UserContext';
 
 const MenuBar = () => {
+  const { logout } = useContext(UserContext);
+
+  const handleLogout = () => {
+    logout();
+    alert('Logged Out Successfully!');
+  };
+
   return (
     <div className='menuBar'>
       <div className="logo">
@@ -17,15 +25,19 @@ const MenuBar = () => {
             </div>
           </a>
           <a href='/#HowItWorks'>
-          <div className='menu'>
-            How It Works
-          </div>
+            <div className='menu'>
+              How It Works
+            </div>
           </a>
           <a href='/#Information'>
-          <div className='menu'>
-            Information
-          </div>
+            <div className='menu'>
+              Information
+            </div>
           </a>
+          {/* Update Log Out button */}
+          <button className='menu logout-button' onClick={handleLogout}>
+            Log Out
+          </button>
         </span>
       </div>
     </div>

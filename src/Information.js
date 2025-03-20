@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './information.css';
 import MenuBar from './MenuBar';
+import { UserContext } from './UserContext';
 
 const Information = () => {
   const [inView, setInView] = useState({
@@ -9,6 +10,8 @@ const Information = () => {
     third: false,
     fourth: false,
   });
+
+  const { user, fetchUserData } = useContext(UserContext);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -35,12 +38,12 @@ const Information = () => {
           Share homemade love <br />
           <span style={{ color: '#510104' }}>With your college doves</span>
         </h2>
-        <a href="/find">
+        <a href="/select">
           <div className="btn customer">
             <span className="btnTxt">I am a customer</span>
           </div>
         </a>
-        <a href="/driverPortal">
+        <a href={user ? '/driverPortal' : '/login?type=driverPortal'}>
           <div className="btn driver">
             <span className="btnTxt">I am a driver</span>
           </div>

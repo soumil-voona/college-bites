@@ -1,15 +1,23 @@
-import React, { useEffect , useState} from "react";
+import React, { useEffect } from "react";
 import L from "leaflet"; // Leaflet.js for maps
 import "leaflet/dist/leaflet.css"; // Leaflet CSS for styling
-import config from "./CONSTANTS.js";
 import axios from "axios";
+import { getFirestore, collection, getDocs } from "firebase/firestore"; // Import Firestore functions
+import { useNavigate, useLocation } from "react-router-dom"; // Import useNavigate and useLocation
 
 const GoogleMaps = ({ lat, lon }) => {
-  const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate(); // Initialize navigate function
+  const location = useLocation(); // Get location object
+  const queryParams = new URLSearchParams(location.search);
+  const college = queryParams.get('college') || '/'; // Default to '/' if 'type' is not provided
+  
+  const collegesDictionary = {'utd': 'University of Texas at Dallas', 'atm': 'Texas A&M University', 'unt': 'University of North Texas'}; // Initialize an empty dictionary to store driver data
   useEffect(() => {
     const mapContainer = document.getElementById("map");
 
-    if (!mapContainer || mapContainer._leaflet_id) return;
+    if (!mapContainer || mapContainer._leaflet_id) return; // Prevent reinitialization
+
+    console.log("Initializing map..."); // Log map initialization
 
     // ✅ Ensure the icon URL is correct
     const customIcon = L.icon({
@@ -18,10 +26,6 @@ const GoogleMaps = ({ lat, lon }) => {
       iconAnchor: [22, 38],
       popupAnchor: [-3, -76],
     });
-
-    const closePopup = () => {
-      setShowPopup(false);
-    };
 
     const workerIcon = L.icon({
       iconUrl: process.env.PUBLIC_URL + "/images/worker-pin.png", // Correct path to the image
@@ -62,35 +66,54 @@ const GoogleMaps = ({ lat, lon }) => {
       lat && lon ? 13 : 5
     );
 
+    console.log("Map initialized successfully."); // Confirm map initialization
+
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
     const addDriverMarkers = async () => {
-      // Validate the custom icon before adding markers
       try {
         await validateIcon(workerIcon.options.iconUrl);
 
-        for (let driver of config.driverInfo) {
+        const db = getFirestore(); // Initialize Firestore
+        const drivesCollection = collection(db, "drives");
+        const querySnapshot = await getDocs(drivesCollection);
+
+        const drivers = [];
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          if (data.name && data.address && data.destination === collegesDictionary[college]) {
+            drivers.push({ id: doc.id, name: data.name, address: data.address, phoneNumber: data.number });
+          }
+        });
+
+        for (let driver of drivers) {
           const coords = await convert(driver.address);
+          console.log(`Driver: ${driver.name}, Address: ${driver.address}, Coords: ${coords}`); // Log coordinates
           if (coords) {
-            L.marker(coords, { icon: workerIcon }) // Make sure valid coordinates are passed
+            const marker = L.marker(coords, { icon: workerIcon })
               .addTo(map)
-              .on('click', (e) => {
-                L.popup()
-                  .setLatLng(e.latlng)
-                  .setContent(`<b>${driver.name}</b><br>${driver.address}`)
-                  .openOn(map);
-              })
+              .bindPopup(`<b>${driver.name}</b><br>${driver.address}<br>${driver.phoneNumber}<br>Click to checkout`);
               
-              .openPopup();
+            marker.on("mouseover", function () {
+              this.openPopup();
+            });
+            marker.on("mouseout", function () {
+              this.closePopup();
+            });
+            marker.on("click", function () {
+              navigate(`/checkout?driverId=${driver.id}`); // Pass Firestore document ID as query parameter
+            });
+
+            console.log(`Marker added for driver: ${driver.name}`); // Log marker addition
           } else {
             console.warn("Skipping invalid address:", driver.address);
           }
         }
       } catch (error) {
-        console.error("Icon loading failed:", error);
+        console.error("Error fetching driver data or loading icons:", error);
       }
     };
 
@@ -101,12 +124,13 @@ const GoogleMaps = ({ lat, lon }) => {
         .addTo(map)
         .bindPopup("Your Address")
         .openPopup();
+      console.log("Custom marker added for user location."); // Log custom marker addition
     }
 
     return () => map.remove();
-  }, [lat, lon]);
+  }, [lat, lon, navigate]);
 
-  return <div id="map" style={{ width: "40vw", height: "40vh", borderRadius: "20px", left: "28vw", top: '50vh'}} />;
+  return <div id="map" style={{ width: "40vw", height: "40vh", borderRadius: "20px", left: "28vw", top: "50vh" }} />;
 };
 
 export default GoogleMaps;

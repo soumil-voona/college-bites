@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import Information from './Information'; // Updated to test the default route
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('renders Information page', () => {
+  render(<Information />);
+  const headerElement = screen.getByText(/Share homemade love/i);
+  expect(headerElement).toBeInTheDocument();
 });

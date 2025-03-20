@@ -1,13 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import MenuBar from './MenuBar';
 import ListingDriver from './listingDriver';
 import './driverPortal.css';
-import config from './CONSTANTS.js';
+import { getFirestore, collection, addDoc, getDoc, doc, getDocs } from 'firebase/firestore';
+import { UserContext } from './UserContext';
 
 const DriverPortal = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [listings, setListings] = useState([]);
-  const [newListing, setNewListing] = useState({ name: '', deliveryDate: '', destination: '' });
+  const [newListing, setNewListing] = useState({
+    name: '',
+    deliveryDate: '',
+    destination: '',
+    phoneNumber: '',
+    address: '',
+  });
+
+  const { user } = useContext(UserContext);
+
+  useEffect(() => {
+    const fetchListings = async () => {
+      if (!user) {
+        console.error("User not logged in. Cannot fetch listings.");
+        return;
+      }
+
+      try {
+        const db = getFirestore();
+        const userDrivesRef = collection(db, 'users', user, 'drives');
+        const querySnapshot = await getDocs(userDrivesRef);
+        const fetchedListings = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setListings(fetchedListings);
+      } catch (error) {
+        console.error("Error fetching listings: ", error);
+      }
+    };
+
+    fetchListings();
+  }, [user]);
 
   const handleNewListing = () => {
     setShowPopup(true);
@@ -18,7 +51,17 @@ const DriverPortal = () => {
     setNewListing((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleNewListingSubmit = () => {
+  const handleNewListingSubmit = async () => {
+    if (!/^\d{10}$/.test(newListing.phoneNumber)) {
+      alert("Phone number must be exactly 10 digits.");
+      return;
+    }
+
+    if (!newListing.address || newListing.address.trim().length === 0) {
+      alert("Address cannot be empty.");
+      return;
+    }
+
     if (newListing.name && newListing.deliveryDate && newListing.destination) {
       const newEntry = {
         name: newListing.name,
@@ -28,11 +71,39 @@ const DriverPortal = () => {
         deliveryDate: newListing.deliveryDate,
         destination: newListing.destination,
       };
-      config.driverInfo.push(newEntry);
-      console.error(config.driverInfo);
-      setListings((prevListings) => [...prevListings, newEntry]);
+
+      try {
+        const db = getFirestore();
+
+        if (!user) {
+          console.error("User not logged in. Cannot add listing.");
+          return;
+        }
+
+        // Add new entry under the user's uid in the drives collection
+        const userDrivesRef = collection(db, 'users', user, 'drives');
+        const docRef = await addDoc(userDrivesRef, newEntry);
+        console.log("Document written with ID: ", docRef.id);
+
+        // Push to global 'drives' collection
+        const globalDrivesRef = collection(db, 'drives');
+        await addDoc(globalDrivesRef, newEntry);
+        console.log("Document also added to global 'drives' collection");
+
+        setListings((prev) => [...prev, newEntry]);
+
+        const drivesDocRef = doc(db, 'users', user, 'drives', docRef.id);
+        const driveDoc = await getDoc(drivesDocRef);
+        const driveData = driveDoc.data();
+        console.log('Drive file exists in Firestore:', driveData);
+        
+        
+      } catch (error) {
+        console.error("Error adding document: ", error);
+      }
+
       setShowPopup(false);
-      setNewListing({ name: '', deliveryDate: '', destination: '' });
+      setNewListing({ name: '', deliveryDate: '', destination: '', phoneNumber: '', address: '' }); // Reset form state
     }
   };
 

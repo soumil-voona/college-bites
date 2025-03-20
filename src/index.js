@@ -8,6 +8,8 @@ import DriverPortal from "./driverPortal";
 import Map from "./Map";
 import SignupScreen from "./SignupScreen"
 import { initializeApp } from "firebase/app";
+import { UserProvider } from './UserContext';
+import Checkout from "./Checkout";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA3apLDGnUGwVZ_OZ6JIL4rPkngNsED-J0",
@@ -24,15 +26,18 @@ initializeApp(firebaseConfig);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route path="/" element={<Information />} /> {/* Default route */}
-        <Route path="/login" element={<LoginScreen />} /> {/* Login route */}
-        <Route path="/signup" element={<SignupScreen />} />
-        <Route path="/select" element={<MainWebpage />} />
-        <Route path="/driverPortal" element={<DriverPortal />} />
-        <Route path="/find" element={<Map />} />
-      </Routes>
-    </Router>
+    <UserProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Information />} /> {/* Default route */}
+          <Route path="/login" element={<LoginScreen />} /> {/* Login route */}
+          <Route path="/signup" element={<SignupScreen />} />
+          <Route path="/select" element={<MainWebpage />} />
+          <Route path="/driverPortal" element={<DriverPortal />} />
+          <Route path="/find" element={<Map />} />
+          <Route path="/checkout" element={<Checkout />} />
+        </Routes>
+      </Router>
+    </UserProvider>
   </React.StrictMode>
 );
