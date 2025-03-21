@@ -11,7 +11,11 @@ const GoogleMaps = ({ lat, lon }) => {
   const queryParams = new URLSearchParams(location.search);
   const college = queryParams.get('college') || '/'; // Default to '/' if 'type' is not provided
   
-  const collegesDictionary = {'utd': 'University of Texas at Dallas', 'atm': 'Texas A&M University', 'unt': 'University of North Texas'}; // Initialize an empty dictionary to store driver data
+  const collegesDictionary = React.useMemo(() => ({
+    'utd': 'University of Texas at Dallas',
+    'atm': 'Texas A&M University',
+    'unt': 'University of North Texas'
+  }), []); // Memoize the dictionary to prevent reinitialization
   useEffect(() => {
     const mapContainer = document.getElementById("map");
 
@@ -128,7 +132,7 @@ const GoogleMaps = ({ lat, lon }) => {
     }
 
     return () => map.remove();
-  }, [lat, lon, navigate]);
+  }, [lat, lon, navigate, college, collegesDictionary]);
 
   return <div id="map" style={{ width: "40vw", height: "40vh", borderRadius: "20px", left: "28vw", top: "50vh" }} />;
 };

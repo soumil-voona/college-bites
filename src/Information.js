@@ -11,7 +11,7 @@ const Information = () => {
     fourth: false,
   });
 
-  const { user, fetchUserData } = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
