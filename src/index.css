@@ -9,7 +9,7 @@
 }
 .header{
     font-family: Poppins;
-    font-size: 5rem;
+    font-size: 6vw;
     position: absolute;
     top: 15vh;
     left: 10vw;
@@ -30,7 +30,7 @@
     align-items: center;
     position: fixed;
     font-family: "Saira Stencil One";
-    font-size: 3rem;
+    font-size: 3vw;
     color: black;
     margin-top: -1vh;
   }

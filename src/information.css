@@ -1,13 +1,11 @@
 /* Existing styles with minor adjustments for animations */
 .info-opening {
-    width: 100vw;
+    width: 100%;
     margin-left: -8px;
     margin-top: -8px;
     height: 95vh;
-    position: absolute;
     background-color: #E0BABB;
     opacity: 0;
-    transform: translateY(20px);
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
@@ -23,10 +21,7 @@
     transform: translateY(0);
 }
 
-.header {
-    color: #000;
-    font-weight: 700;
-}
+
 
 .btn {
     z-index: 10;
@@ -50,7 +45,7 @@
 }
 
 span.txt {
-    font-size: 35px;
+    font-size: 3vw;
     margin: auto;
     font-family: Poppins;
 }
@@ -59,7 +54,7 @@ span.txt {
     left: 19vw;
     color: white;
     font-family: Poppins;
-    font-size: 2rem;
+    font-size: 2vw;
     text-align: center;
 }
 
@@ -67,7 +62,7 @@ span.txt {
     left: 59vw;
     color: white;
     font-family: Poppins;
-    font-size: 2rem;
+    font-size: 2vw;
     margin: auto;
 }
 
@@ -84,7 +79,7 @@ span.txt {
 .menu {
     color: black;
     font-family: Poppins;
-    font-size: 1.5rem;
+    font-size: 2vw;
     margin-left: 5vw;
     margin-top: .5vh;
 }
@@ -112,7 +107,7 @@ h3 {
     color: black;
     font-family: Poppins;
     margin-top: 0;
-    font-size: 2rem;
+    font-size: 2vw;
     margin-bottom: 1vh;
 }
 
@@ -164,7 +159,7 @@ h3 {
     background-color: #510104;
 }
 
-.measurements {
+.measuvwents {
     font-family: Poppins;
     width: 30vw;
     height: 30vh;
