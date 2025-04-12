@@ -1,0 +1,54 @@
+.logoLink {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.logoContent {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    font-family: "Saira Stencil One";
+    font-size: 3vw;
+    color: black;
+    margin-top: .5vh;
+    width: 100vw;
+    margin-left: 3vw;
+    margin-right: 100vw;
+}
+@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
+  .logoContent svg {
+    margin-right: 10px; /* Adjust the spacing as needed */
+}
+.menuBar{
+    background-color: #be8f91;
+    width: 100vw;
+    height: 10vh;
+    position: fixed;
+    z-index: 1;
+}
+.menuContent{
+    margin-left: 30vw;
+    position: fixed;
+    display:flexbox;
+}
+.menu {
+    color: black;
+    font-family: Poppins;
+    font-size: 2vw;
+    margin-top: -.75vh;
+    height: 11.25vh;
+    display: flex;
+    align-items: center;
+    float: left;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    display: flex;
+}
+.menu:hover {
+    background-color: rgb(233, 129, 135);
+    color: black;
+}
+

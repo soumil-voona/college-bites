@@ -12,12 +12,13 @@ import { UserProvider } from './UserContext';
 import Checkout from "./Checkout";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA3apLDGnUGwVZ_OZ6JIL4rPkngNsED-J0",
-  authDomain: "authentication-c025c.firebaseapp.com",
-  projectId: "authentication-c025c",
-  storageBucket: "authentication-c025c.firebasestorage.app",
-  messagingSenderId: "1027056621683",
-  appId: "1:1027056621683:web:2dfa244f85768da3fbb206"
+  apiKey: "AIzaSyBdWHhBZnaeHzi0WhXdL7yVN_zc3Ykej0Y",
+  authDomain: "college-bites-1.firebaseapp.com",
+  projectId: "college-bites-1",
+  storageBucket: "college-bites-1.firebasestorage.app",
+  messagingSenderId: "80752326422",
+  appId: "1:80752326422:web:46949a7765f354ccc00237",
+  measurementId: "G-BZJZP9TR23"
 };
 
 initializeApp(firebaseConfig);

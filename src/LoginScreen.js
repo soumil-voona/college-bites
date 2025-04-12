@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate, useLocation } from 'react-router-dom'; // Import useLocation
+import { useNavigate } from 'react-router-dom'; // Import useLocation
 import './login.css'; // Ensure this import is included to load the CSS
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import { UserContext } from './UserContext';
@@ -8,13 +8,8 @@ import { UserContext } from './UserContext';
 function LoginScreen() {
   const auth = getAuth();
   const navigate = useNavigate();
-  const location = useLocation(); // Get location object
   const { setUser } = useContext(UserContext);
   
-  // Extract 'type' query parameter from the URL
-  const queryParams = new URLSearchParams(location.search);
-  const type = queryParams.get('type') || '/'; // Default to '/' if 'type' is not provided
-
   // State variables for managing authentication state, email, password, and error messages
   const [authing, setAuthing] = useState(false);
   const [email, setEmail] = useState('');
@@ -27,18 +22,18 @@ function LoginScreen() {
     try {
       // Use Firebase to sign in with Google
       const response = await signInWithPopup(auth, new GoogleAuthProvider());
-      console.error(response.user.uid);
+      console.log(response.user.uid);
       const db = getFirestore();
       const userDocRef = doc(db, 'users', response.user.uid);
       const userDoc = await getDoc(userDocRef);
 
       if (!userDoc.exists()) {
         console.error('No corresponding user file found in Firestore.');
-        navigate(`/${type}`); // Navigate to the extracted 'type' route
+        navigate('/driverPortal'); // Navigate to the extracted 'type' route
       } else {
-        console.error('User file exists in Firestore:', userDoc.data());
+        console.log('User file exists in Firestore:', userDoc.data());
         setUser(response.user.uid); // Store only uid in context
-        navigate(`/${type}`);
+        navigate('/driverPortal');
       }
       
     } catch (error) {
@@ -59,10 +54,10 @@ function LoginScreen() {
       const userDocRef = doc(db, 'users', response.user.uid);
       const userDoc = await getDoc(userDocRef);
       const userData = userDoc.data();
-      console.error(response.user.uid);
-      console.error('User file exists in Firestore:', userData);
+      console.log(response.user.uid);
+      console.log('User file exists in Firestore:', userData);
       setUser(response.user.uid); // Store only uid in context
-      navigate(`/${type}`);
+      navigate('/driverPortal');
     } catch (error) {
       console.error('Error during sign-in with email and password:', error);
       setError(error.message);

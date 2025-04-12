@@ -15,29 +15,9 @@
     left: 10vw;
     font-weight: 500;
 }
-.logo {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    z-index: 1;
-    margin-top: 6vh;
-    margin-left: 3vw;
-    width: 100vw;
-  }
+
   
-  .logo-content {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    font-family: "Saira Stencil One";
-    font-size: 3vw;
-    color: black;
-    margin-top: -1vh;
-  }
-@import url('https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap');
-  .logo-content svg {
-    margin-right: 10px; /* Adjust the spacing as needed */
-}
+  
 img{
     z-index: 5;
     top: 45vh;
@@ -53,15 +33,7 @@ img{
 .unt{
     left: 70vw;
 }
-.menuBar{
-    width: 100vw;
-    top: 0;
-    left: 0;
-    height: 12vh;
-    background: #e3aaad;
-    position: fixed;
-    z-index: 9999999;
-}
+
 a:active{
     color: black;
 }

@@ -76,13 +76,7 @@ span.txt {
     background-color: #510104;
 }
 
-.menu {
-    color: black;
-    font-family: Poppins;
-    font-size: 2vw;
-    margin-left: 5vw;
-    margin-top: .5vh;
-}
+
 
 .about {
     color: white;
@@ -176,12 +170,7 @@ svg {
     fill: #a2641c;
 }
 
-.logoLink {
-    color: black;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-}
+
 
 @keyframes highlightBlock {
     0% {
@@ -195,16 +184,3 @@ svg {
     }
 }
 
-.menu:hover {
-    background-color: rgb(233, 129, 135);
-    color: black;
-}
-
-.menu {
-    height: 12vh;
-    width: 12vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    float: left;
-}
