@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/college-bites/static/css/main.51c99d5f.css",
+    "main.js": "/college-bites/static/js/main.63764839.js",
+    "index.html": "/college-bites/index.html",
+    "main.51c99d5f.css.map": "/college-bites/static/css/main.51c99d5f.css.map",
+    "main.63764839.js.map": "/college-bites/static/js/main.63764839.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.51c99d5f.css",
+    "static/js/main.63764839.js"
+  ]
+}
