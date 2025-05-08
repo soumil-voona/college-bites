@@ -37,7 +37,7 @@ const MenuBar = () => {
           </div>
         </a>
           {/* Update Log Out button */}
-          <button className='menu logout-button' onClick={handleLogout}>
+          <button className='menu' style={{ backgroundColor: 'transparent', border: 'transparent'}} onClick={handleLogout}>
             Log Out
           </button>
         </span>
